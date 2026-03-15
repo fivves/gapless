@@ -1,7 +1,7 @@
 <img align="left" alt="Project logo" src="data/icons/hicolor/scalable/apps/app.svg" />
 
 # Gapless
-Play your music elegantly.
+Play your music elegantly. With more features! 
 
 <img src="https://gitlab.gnome.org/neithern/screenshots/-/raw/main/g4music/window.png" width="1134"/>
 <img src="https://gitlab.gnome.org/neithern/screenshots/-/raw/main/g4music/albums.png" width="1134"/>
