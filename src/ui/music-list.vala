@@ -512,6 +512,12 @@ namespace Gapless {
                         position = _data_store.get_n_items ();
                     var playlist = (Playlist) value.get_object ();
                     modified |= merge_items_to_store (_data_store, playlist.items, ref position);
+                    if (playlist.items.length > 0) {
+                        var index = find_item_in_model (_filter_model, playlist.items.get (0));
+                        if (index != -1) {
+                            run_timeout_once (50, () => scroll_to_item (index, true));
+                        }
+                    }
                 } else {
                     var files = get_dropped_files (value);
                     _app.open_files_async.begin (files, position, false,
@@ -522,6 +528,7 @@ namespace Gapless {
             return true;
         }
 
+
         private uint _activate_handle = 0;
         private uint _edge_scroll_handle = 0;
 
@@ -529,6 +536,15 @@ namespace Gapless {
             if (_edge_scroll_handle != 0) {
                 Source.remove (_edge_scroll_handle);
                 _edge_scroll_handle = 0;
+            }
+            var height = get_height ();
+            if (y < 50 || y > height - 50) {
+                var step = (y < 50) ? -20.0 : 20.0;
+                _edge_scroll_handle = GLib.Timeout.add (50, () => {
+                    var adj = _scroll_view.vadjustment;
+                    adj.value = double.max (adj.lower, double.min (adj.upper - adj.page_size, adj.value + step));
+                    return true;
+                });
             }
 
             _columns = get_grid_view_item_size (_grid_view, ref _item_size, ref _cell_size);

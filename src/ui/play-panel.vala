@@ -58,15 +58,27 @@ namespace Gapless {
 
             initial_label.activate_link.connect (on_music_folder_clicked);
 
-            music_album.tooltip_text = _("Search Album");
-            music_artist.tooltip_text = _("Search Artist");
-            music_title.tooltip_text = _("Search Title");
-            make_widget_clickable (music_album).released.connect (
-                () => win.start_search (music_album.label, SearchMode.ALBUM));
-            make_widget_clickable (music_artist).released.connect (
-                () => win.start_search (music_artist.label, SearchMode.ARTIST));
-            make_widget_clickable (music_title).released.connect (
-                () => win.start_search (music_title.label, SearchMode.TITLE));
+            music_album.tooltip_text = _("Go to album");
+            music_artist.tooltip_text = _("Go to artist");
+            music_title.tooltip_text = _("Go to playing song");
+            make_widget_clickable (music_album).released.connect (() => {
+                var music = _app.current_music;
+                if (music != null) {
+                    var artist = new Artist ((!)music, ((!)music).artist_name);
+                    var album = new Album ((!)music);
+                    var uri = build_library_uri (artist, album);
+                    win.open_page (uri);
+                }
+            });
+            make_widget_clickable (music_artist).released.connect (() => {
+                var music = _app.current_music;
+                if (music != null) {
+                    var artist = new Artist ((!)music, ((!)music).artist_name);
+                    var uri = build_library_uri (artist, null);
+                    win.open_page (uri);
+                }
+            });
+            make_widget_clickable (music_title).released.connect (() => win.open_playing_page ());
             make_right_clickable (music_box, show_popover_menu);
 
             app.index_changed.connect (on_index_changed);

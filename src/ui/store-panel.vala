@@ -157,6 +157,7 @@ namespace Gapless {
             }
         }
 
+
         public bool modified {
             get {
                 return _current_list.modified;
@@ -443,7 +444,7 @@ namespace Gapless {
                 split_btn.tooltip_text = _("Play");
                 split_btn.clicked.connect (() => open_page (build_library_uri (artist, album), true));
                 if (artist != null)
-                    split_btn.menu_model = (album == null || album is Playlist) ? create_menu_for_artist ((!)artist) : create_menu_for_album ((!)album);
+                    split_btn.menu_model = create_menu_for_artist ((!)artist);
                 else if (album != null)
                     split_btn.menu_model = create_menu_for_album ((!)album);
                 (split_btn.menu_model as Menu)?.remove (0); // Play
@@ -465,7 +466,7 @@ namespace Gapless {
                 return _playlist_stack;
             return null;
         }
-
+        
         private void initialize_library_page () {
             if (_library_uri != null) {
                 open_page ((!)_library_uri);
@@ -512,8 +513,6 @@ namespace Gapless {
                             if (al != null) {
                                 if (((!)al).length > 0)
                                     album = ((!)artist)[(!)al];
-                                else
-                                    album = ((!)artist).to_playlist ();
                             }
                         }
                     } else if (al != null) {
