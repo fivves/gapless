@@ -30,7 +30,7 @@ pkg install vala meson libadwaita gstreamer1-plugins-all gettext gtk4
 ## How to build 
 It is written in Vala, simple and clean code, with few third-party dependencies:
 
-1. Clone the code from gitlab.
+1. Clone the code from github.
 2. Install vala, develop packages of gtk4, libadwaita, gstreamer.
 3. Run in the project directory:
 
