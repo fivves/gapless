@@ -26,9 +26,9 @@ int main (string[] args) {
 
     Random.set_seed ((uint32) get_monotonic_time ());
 
-    G4.GstPlayer.init (ref args);
+    Gapless.GstPlayer.init (ref args);
 
-    var app = new G4.Application ();
+    var app = new Gapless.Application ();
     return app.run (args);
 }
 

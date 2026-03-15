@@ -1,7 +1,7 @@
-namespace G4 {
+namespace Gapless {
 
     public class TagCache {
-        private static uint32 MAGIC = 0x54414733; //  'TAG3'
+        private static uint32 MAGIC = 0x54414734; //  'TAG4'
 
         private Event _event = new Event ();
         private File _file;

@@ -1,4 +1,4 @@
-namespace G4 {
+namespace Gapless {
     public const string UNKNOWN_ALBUM = _("Unknown Album");
     public const string UNKNOWN_ARTIST = _("Unknown Artist");
 
@@ -164,6 +164,8 @@ namespace G4 {
             genre = dis.read_string ();
             track = (int) dis.read_size ();
             disc = (int) dis.read_size ();
+            _cover_key = dis.read_string ();
+            if (_cover_key == null || ((!)_cover_key).length == 0) _cover_key = uri;
 
             update_album_key ();
             _artist_key = artist.collate_key_for_filename ();
@@ -183,6 +185,7 @@ namespace G4 {
             dos.write_string (genre);
             dos.write_size (track);
             dos.write_size (disc);
+            dos.write_string (_cover_key ?? "");
         }
 
         public void parse_tags () {

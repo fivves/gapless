@@ -1,12 +1,12 @@
-# Hindi translation for g4music.
-# Copyright (C) 2024 g4music's COPYRIGHT HOLDER
-# This file is distributed under the same license as the g4music package.
+# Hindi translation for gapless.
+# Copyright (C) 2024 gapless's COPYRIGHT HOLDER
+# This file is distributed under the same license as the gapless package.
 # Scrambled777 <weblate.scrambled777@simplelogin.com>, 2024.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: g4music master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/neithern/g4music/issues\n"
+"Project-Id-Version: gapless master\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/fivves/gapless/issues\n"
 "POT-Creation-Date: 2024-07-20 09:24+0000\n"
 "PO-Revision-Date: 2024-07-21 09:56+0530\n"
 "Last-Translator: Scrambled777 <weblate.scrambled777@simplelogin.com>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-DL-Lang: hi\n"
-"X-DL-Module: g4music\n"
+"X-DL-Module: gapless\n"
 "X-DL-Branch: master\n"
 "X-DL-Domain: po\n"
 "X-DL-State: None\n"

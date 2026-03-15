@@ -1,12 +1,12 @@
-# Finnish translation for g4music.
-# Copyright (C) 2023 g4music's COPYRIGHT HOLDER
-# This file is distributed under the same license as the g4music package.
+# Finnish translation for gapless.
+# Copyright (C) 2023 gapless's COPYRIGHT HOLDER
+# This file is distributed under the same license as the gapless package.
 # Jiri Grönroos <jiri.gronroos@iki.fi>, 2023.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: g4music master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/neithern/g4music/issues\n"
+"Project-Id-Version: gapless master\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/fivves/gapless/issues\n"
 "POT-Creation-Date: 2024-10-11 01:38+0000\n"
 "PO-Revision-Date: 2024-11-11 20:34+0200\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
@@ -37,10 +37,10 @@ msgstr "music;sound;player;media;audio;playlist;musiikki;ääni;soittolista;"
 
 #: data/app.metainfo.xml.in:24
 msgid ""
-"Gapless (AKA: G4Music) is a light weight music player written in GTK4, "
+"Gapless (AKA: Gapless) is a light weight music player written in GTK4, "
 "focuses on large music collection."
 msgstr ""
-"Gapless (tunnettu myös nimellä G4Music) on kevyt musiikintoistosovellus, "
+"Gapless (tunnettu myös nimellä Gapless) on kevyt musiikintoistosovellus, "
 "joka on kirjoitettu GTK4:llä, ja sen huomion kohteena on suuret "
 "musiikkikokoelmat."
 
@@ -583,9 +583,6 @@ msgstr "Tuntematon albumi"
 #: src/utils/music.vala:3
 msgid "Unknown Artist"
 msgstr "Tuntematon esittäjä"
-
-#~ msgid "G4Music"
-#~ msgstr "G4Music"
 
 #~ msgid "Play music"
 #~ msgstr "Toista musiikkia"

@@ -1,4 +1,4 @@
-namespace G4 {
+namespace Gapless {
 
     public const string ACTION_APP = "app.";
     public const string ACTION_ABOUT = "about";
@@ -14,6 +14,7 @@ namespace G4 {
     public const string ACTION_RANDOM_PLAY = "random-play";
     public const string ACTION_RELOAD = "reload";
     public const string ACTION_REMOVE = "remove";
+    public const string ACTION_RESHUFFLE = "reshuffle";
     public const string ACTION_SAVE_LIST = "save-list";
     public const string ACTION_SCHEME = "scheme";
     public const string ACTION_SHOW_FILE = "show-file";
@@ -55,6 +56,7 @@ namespace G4 {
                 { ACTION_PREFS, show_preferences },
                 { ACTION_RANDOM_PLAY, play_or_queue, "s" },
                 { ACTION_RELOAD, () => _app.reload_library () },
+                { ACTION_RESHUFFLE, reshuffle },
                 { ACTION_SCHEME, scheme, "s", "'0'" },
                 { ACTION_SHOW_FILE, show_file, "s" },
                 { ACTION_SHOW_TAGS, show_tags, "s" },
@@ -225,6 +227,13 @@ namespace G4 {
                 return false;
             });
             win.present ();
+        }
+
+        private void reshuffle () {
+            if (_app.sort_mode == SortMode.SHUFFLE) {
+                sort_music_store ((ListStore) _app.music_queue, SortMode.SHUFFLE);
+                _app.list_reshuffled ();
+            }
         }
 
         private void sort_by (SimpleAction action, Variant? state) {

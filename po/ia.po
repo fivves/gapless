@@ -1,13 +1,13 @@
-# Interlingua translation for g4music.
-# Copyright (C) 2025 g4music's COPYRIGHT HOLDER
-# This file is distributed under the same license as the g4music package.
+# Interlingua translation for gapless.
+# Copyright (C) 2025 gapless's COPYRIGHT HOLDER
+# This file is distributed under the same license as the gapless package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # Emilio Sepúlveda <emism.translations@gmail.com>, 2025.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: g4music master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/neithern/g4music/issues\n"
+"Project-Id-Version: gapless master\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/fivves/gapless/issues\n"
 "POT-Creation-Date: 2025-09-11 07:33+0000\n"
 "PO-Revision-Date: 2025-09-23 16:19-0300\n"
 "Last-Translator: Emilio Sepúlveda <emism.translations@gmail.com>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-DL-Lang: ia\n"
-"X-DL-Module: g4music\n"
+"X-DL-Module: gapless\n"
 "X-DL-Branch: master\n"
 "X-DL-Domain: po\n"
 "X-DL-State: Translating\n"
@@ -43,7 +43,7 @@ msgstr "music;sound;player;media;audio;playlist;"
 
 #: data/app.metainfo.xml.in:24
 msgid ""
-"Gapless (AKA: G4Music) is a light weight music player written in GTK4, "
+"Gapless (AKA: Gapless) is a light weight music player written in GTK4, "
 "focuses on large music collection."
 msgstr ""
 

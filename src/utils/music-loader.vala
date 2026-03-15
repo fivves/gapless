@@ -1,4 +1,4 @@
-namespace G4 {
+namespace Gapless {
 
     public class Progress {
         private int _progress = 0;

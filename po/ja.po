@@ -1,12 +1,12 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the g4music package.
+# This file is distributed under the same license as the gapless package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # Gnuey56 <gnuey56@proton.me>, 2023.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: g4music\n"
+"Project-Id-Version: gapless\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-26 21:16+0800\n"
 "PO-Revision-Date: 2023-08-01 16:05+0900\n"
@@ -20,8 +20,8 @@ msgstr ""
 "X-Generator: Gtranslator 42.0\n"
 
 #: data/app.desktop.in:3 src/application.vala:225 src/main.vala:24
-msgid "G4Music"
-msgstr "G4Music"
+msgid "Gapless"
+msgstr "Gapless"
 
 #: data/app.desktop.in:4
 msgid "Music Player"
@@ -195,7 +195,7 @@ msgstr "キーボードショートカット(_K)"
 
 #: src/gtk/store-panel.ui:87
 msgid "_About"
-msgstr "G4Music について(_A)"
+msgstr "Gapless について(_A)"
 
 #: src/gtk/store-panel.ui:96 src/ui/preferences.vala:64
 msgid "Album"

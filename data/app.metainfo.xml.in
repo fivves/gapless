@@ -6,22 +6,22 @@
     <project_license>GPL-3.0-or-later</project_license>
     <summary>Play your music elegantly</summary>
 
-    <developer id="com.github.neithern">
+    <developer id="com.github.fivves">
         <name translate="no">Nanling</name>
     </developer>
-    <update_contact>neithern@outlook.com</update_contact>
+    <update_contact>fivves@outlook.com</update_contact>
 
-    <url type="homepage">https://gitlab.gnome.org/neithern/g4music</url>
-    <url type="bugtracker">https://gitlab.gnome.org/neithern/g4music/issues</url>
-    <url type="translate">https://l10n.gnome.org/module/g4music</url>
+    <url type="homepage">https://gitlab.gnome.org/fivves/gapless</url>
+    <url type="bugtracker">https://gitlab.gnome.org/fivves/gapless/issues</url>
+    <url type="translate">https://l10n.gnome.org/module/gapless</url>
 
     <launchable type="desktop-id">@app_id@.desktop</launchable>
     <provides>@app_id@.desktop</provides>
     <content_rating type="oars-1.1"/>
-    <translation type="gettext">g4music</translation>
+    <translation type="gettext">gapless</translation>
 
     <description>
-      	<p>Gapless (AKA: G4Music) is a light weight music player written in GTK4, focuses on large music collection.</p>
+      	<p>Gapless (AKA: Gapless) is a light weight music player written in GTK4, focuses on large music collection.</p>
         <p>Features</p>
         <ul>
         <li>Supports most music file types, Samba and any other remote protocols (depends on GIO and GStreamer).</li>
@@ -48,24 +48,24 @@
     <screenshots>
         <screenshot type="default">
             <caption>Main window</caption>
-            <image>https://gitlab.gnome.org/neithern/screenshots/-/raw/main/g4music/window.png</image>
+            <image>https://gitlab.gnome.org/fivves/screenshots/-/raw/main/gapless/window.png</image>
         </screenshot>
         <screenshot>
             <caption>Albums view</caption>
-            <image>https://gitlab.gnome.org/neithern/screenshots/-/raw/main/g4music/albums.png</image>
+            <image>https://gitlab.gnome.org/fivves/screenshots/-/raw/main/gapless/albums.png</image>
         </screenshot>
         <screenshot>
             <caption>Playing view</caption>
-            <image>https://gitlab.gnome.org/neithern/screenshots/-/raw/main/g4music/playing.png</image>
+            <image>https://gitlab.gnome.org/fivves/screenshots/-/raw/main/gapless/playing.png</image>
         </screenshot>
         <screenshot>
             <caption>Playlist view</caption>
-            <image>https://gitlab.gnome.org/neithern/screenshots/-/raw/main/g4music/playlist.png</image>
+            <image>https://gitlab.gnome.org/fivves/screenshots/-/raw/main/gapless/playlist.png</image>
         </screenshot>
     </screenshots>
 
     <releases>
-        <release version="4.6" date="2025-11-16">
+        <release version="4.7" date="2025-11-16">
             <description translate="no">
                 <ul>
                 <li>Get filtered items as a playlist.</li>

@@ -1,16 +1,16 @@
-# Chinese translations for g4music package.
-# Copyright (C) 2022 THE g4music'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the g4music package.
+# Chinese translations for gapless package.
+# Copyright (C) 2022 THE gapless'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the gapless package.
 # lumingzh <lumingzh@qq.com>, 2024.
-# Nanling <neithern@outlook.com>, 2022-2024.
+# Nanling <fivves@outlook.com>, 2022-2024.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: g4music\n"
+"Project-Id-Version: gapless\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-11 09:34+0800\n"
 "PO-Revision-Date: 2024-10-11 09:35+0800\n"
-"Last-Translator: Nanling <neithern@outlook.com>\n"
+"Last-Translator: Nanling <fivves@outlook.com>\n"
 "Language-Team: Chinese - China <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -39,10 +39,10 @@ msgstr ""
 
 #: data/app.metainfo.xml.in:24
 msgid ""
-"Gapless (AKA: G4Music) is a light weight music player written in GTK4, "
+"Gapless (AKA: Gapless) is a light weight music player written in GTK4, "
 "focuses on large music collection."
 msgstr ""
-"无暇（又名：G4Music）是一款用 GTK4 编写的轻量级音乐播放器，专注于大型音乐收"
+"无暇（又名：Gapless）是一款用 GTK4 编写的轻量级音乐播放器，专注于大型音乐收"
 "藏。"
 
 #: data/app.metainfo.xml.in:25
@@ -390,7 +390,7 @@ msgstr "一个快速、流畅、轻量的，基于 GTK4 的音乐播放器。"
 #: src/ui/dialogs.vala:53
 msgid "translator-credits"
 msgstr ""
-"Nanling <neithern@outlook.com>, 2022-2024.\n"
+"Nanling <fivves@outlook.com>, 2022-2024.\n"
 "lumingzh <lumingzh@qq.com>, 2024."
 
 #: src/ui/dialogs.vala:99 src/ui/dialogs.vala:111

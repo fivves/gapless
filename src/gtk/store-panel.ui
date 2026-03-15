@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <requires lib="gtk" version="4.0"/>
-  <template class="G4StorePanel" parent="GtkBox">
+  <template class="GaplessStorePanel" parent="GtkBox">
     <property name="orientation">vertical</property>
     <property name="hexpand">true</property>
     <child>
@@ -38,6 +38,14 @@
               <object class="GtkMenuButton" id="sort_btn">
                 <property name="menu_model">sort_menu</property>
                 <property name="tooltip-text" translatable="yes">Sort By</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton" id="reshuffle_btn">
+                <property name="icon_name">view-refresh-symbolic</property>
+                <property name="tooltip-text" translatable="yes">Reshuffle</property>
+                <property name="action-name">app.reshuffle</property>
+                <property name="visible">false</property>
               </object>
             </child>
             <child>

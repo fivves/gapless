@@ -1,4 +1,4 @@
-namespace G4 {
+namespace Gapless {
 
     namespace PageName {
         public const string ALBUM = "album";
@@ -274,7 +274,7 @@ namespace G4 {
         menu.append_item (create_menu_item_for_uri (uri, _("Play"), ACTION_APP + ACTION_PLAY));
         menu.append_item (create_menu_item_for_uri (uri, _("_Random Play"), ACTION_APP + ACTION_RANDOM_PLAY));
         var section = new Menu ();
-        section.append_item (create_menu_item_for_uri (uri, _("Play at _Next"), ACTION_APP + ACTION_PLAY_AT_NEXT));
+        section.append_item (create_menu_item_for_uri (uri, _("Play _Next"), ACTION_APP + ACTION_PLAY_AT_NEXT));
         section.append_item (create_menu_item_for_uri (uri, _("Add to _Queue"), ACTION_APP + ACTION_ADD_TO_QUEUE));
         section.append_item (create_menu_item_for_uri (uri, _("Add to _Playlist…"), ACTION_APP + ACTION_ADD_TO_PLAYLIST));
         menu.append_section (null, section);
@@ -296,7 +296,7 @@ namespace G4 {
         menu.append_item (create_menu_item_for_uri (uri, _("Play"), ACTION_APP + ACTION_PLAY));
         menu.append_item (create_menu_item_for_uri (uri, _("_Random Play"), ACTION_APP + ACTION_RANDOM_PLAY));
         var section = new Menu ();
-        section.append_item (create_menu_item_for_uri (uri, _("Play at _Next"), ACTION_APP + ACTION_PLAY_AT_NEXT));
+        section.append_item (create_menu_item_for_uri (uri, _("Play _Next"), ACTION_APP + ACTION_PLAY_AT_NEXT));
         section.append_item (create_menu_item_for_uri (uri, _("Add to _Queue"), ACTION_APP + ACTION_ADD_TO_QUEUE));
         section.append_item (create_menu_item_for_uri (uri, _("Add to _Playlist…"), ACTION_APP + ACTION_ADD_TO_PLAYLIST));
         menu.append_section (null, section);

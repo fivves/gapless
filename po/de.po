@@ -1,12 +1,12 @@
-# GERMAN TRANSLATION FOR G4MUSIC.
+# GERMAN TRANSLATION FOR GAPLESS.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Jürgen Benvenuti <gastornis@posteo.org>, 2022-2024.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: g4music\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/neithern/g4music/issues\n"
+"Project-Id-Version: gapless\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/fivves/gapless/issues\n"
 "POT-Creation-Date: 2024-10-14 16:49+0000\n"
 "PO-Revision-Date: 2024-10-28 10:35+0100\n"
 "Last-Translator: Jürgen Benvenuti <gastornis@posteo.org>\n"
@@ -33,16 +33,14 @@ msgstr "Geben Sie Ihre Musik auf elegante Weise wieder"
 
 #: data/app.desktop.in:12
 msgid "music;sound;player;media;audio;playlist;"
-msgstr ""
-"music;sound;player;media;audio;playlist;Musik;Klang;Wiedergabe;Medien;Audio;"
-"Wiedergabeliste;"
+msgstr "music;sound;player;media;audio;playlist;Musik;Klang;Wiedergabe;Medien;Audio;Wiedergabeliste;"
 
 #: data/app.metainfo.xml.in:24
 msgid ""
-"Gapless (AKA: G4Music) is a light weight music player written in GTK4, "
+"Gapless (AKA: Gapless) is a light weight music player written in GTK4, "
 "focuses on large music collection."
 msgstr ""
-"Gapless (alias »G4Music«) ist eine leichtgewichtige Musikwiedergabe, "
+"Gapless (alias »Gapless«) ist eine leichtgewichtige Musikwiedergabe, "
 "geschrieben in GTK, die sich auf große Musiksammlungen konzentriert."
 
 #: data/app.metainfo.xml.in:25
@@ -609,9 +607,6 @@ msgstr "Unbekannter Interpret"
 
 #~ msgid "_Add to Playlist…"
 #~ msgstr "Zur Wiedergabeliste _hinzufügen …"
-
-#~ msgid "G4Music"
-#~ msgstr "G4Music"
 
 #~ msgid "Repeat Music"
 #~ msgstr "Den Titel wiederholen"

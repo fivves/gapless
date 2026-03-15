@@ -1,4 +1,4 @@
-namespace G4 {
+namespace Gapless {
 
     public class NarrowBar : Gtk.Widget {
         private Gtk.Widget? _child = null;

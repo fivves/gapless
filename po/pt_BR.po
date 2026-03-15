@@ -1,14 +1,14 @@
-# Brazilian Portuguese translation for g4music.
-# Copyright (C) 2022-2024 g4music'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the g4music package.
+# Brazilian Portuguese translation for gapless.
+# Copyright (C) 2022-2024 gapless'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the gapless package.
 # Pedro Henrique da Silva <pedrohsilva.dev@protonmail.com>, 2023.
 # Fúlvio Leo <fulviokaldas@outlook.com>, 2024.
 # Rafael Fontenelle <rafaelff@gnome.org>, 2024.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: g4music master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/neithern/g4music/issues\n"
+"Project-Id-Version: gapless master\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/fivves/gapless/issues\n"
 "POT-Creation-Date: 2024-10-11 01:38+0000\n"
 "PO-Revision-Date: 2024-10-13 00:14-0300\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
@@ -39,10 +39,10 @@ msgstr "música;som;player;reprodutor;mídia;audio;playlist;lista de reproduçã
 
 #: data/app.metainfo.xml.in:24
 msgid ""
-"Gapless (AKA: G4Music) is a light weight music player written in GTK4, "
+"Gapless (AKA: Gapless) is a light weight music player written in GTK4, "
 "focuses on large music collection."
 msgstr ""
-"Gapless (também conhecido como G4Music) é um reprodutor de música leve "
+"Gapless (também conhecido como Gapless) é um reprodutor de música leve "
 "escrito em GTK4, focado em grandes coleções de músicas."
 
 #: data/app.metainfo.xml.in:25
@@ -596,9 +596,6 @@ msgstr "Artista desconhecido"
 
 #~ msgid "Prefer dark theme"
 #~ msgstr "Preferir tema escuro"
-
-#~ msgid "G4Music"
-#~ msgstr "G4Music"
 
 #~ msgid "Repeat Music"
 #~ msgstr "Repetir Música"

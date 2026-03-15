@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/neithern/g4music/issues\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/fivves/gapless/issues\n"
 "POT-Creation-Date: 2025-09-11 07:33+0000\n"
 "PO-Revision-Date: 2025-09-13 00:09+0300\n"
 "Last-Translator: Dimitris Spentzos <jimspentzos2000@gmail.com>\n"
@@ -37,10 +37,10 @@ msgstr "music;sound;player;media;audio;playlist;μουσική;λίστα;ανα
 
 #: data/app.metainfo.xml.in:24
 msgid ""
-"Gapless (AKA: G4Music) is a light weight music player written in GTK4, "
+"Gapless (AKA: Gapless) is a light weight music player written in GTK4, "
 "focuses on large music collection."
 msgstr ""
-"Το Gapless (γνωστό κι ως «G4Music») είναι μια λιτή εφαρμογή αναπαραγωγής "
+"Το Gapless (γνωστό κι ως «Gapless») είναι μια λιτή εφαρμογή αναπαραγωγής "
 "μουσικής, γραμμένη σε GTK4, που εστιάζει σε μεγάλες συλλογές μουσικής."
 
 #: data/app.metainfo.xml.in:25
@@ -76,8 +76,8 @@ msgstr ""
 msgid ""
 "Group and sorts by album/artist/title, shuffle list, full-text searching."
 msgstr ""
-"Ομαδοποίηση και ταξινόμηση κατά άλμπουμ/καλλιτέχνη/τίτλο, τυχαία "
-"αναπαραγωγή λίστας, αναζήτηση πλήρους κειμένου."
+"Ομαδοποίηση και ταξινόμηση κατά άλμπουμ/καλλιτέχνη/τίτλο, τυχαία αναπαραγωγή "
+"λίστας, αναζήτηση πλήρους κειμένου."
 
 #: data/app.metainfo.xml.in:31
 msgid ""
@@ -90,8 +90,8 @@ msgstr ""
 #: data/app.metainfo.xml.in:32
 msgid "Gaussian blurred cover as background, follows GNOME light/dark mode."
 msgstr ""
-"Γκαουσιανό θόλωμα εξωφύλλου ως εφέ παρασκηνίου, προσαρμογή στην "
-"ανοιχτόχρωμη/σκουρόχρωμη λειτουργία του GNOME."
+"Γκαουσιανό θόλωμα εξωφύλλου ως εφέ παρασκηνίου, προσαρμογή στην ανοιχτόχρωμη/"
+"σκουρόχρωμη λειτουργία του GNOME."
 
 #: data/app.metainfo.xml.in:33
 msgid ""

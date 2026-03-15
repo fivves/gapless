@@ -1,12 +1,12 @@
-# Bulgarian translation of g4music po-file.
-# Copyright (C) 2024 g4music's COPYRIGHT HOLDER
-# This file is distributed under the same license as the g4music package.
+# Bulgarian translation of gapless po-file.
+# Copyright (C) 2024 gapless's COPYRIGHT HOLDER
+# This file is distributed under the same license as the gapless package.
 # twlvnn kraftwerk <kraft_werk@tutanota.com>, 2024.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: g4music master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/neithern/g4music/issues\n"
+"Project-Id-Version: gapless master\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/fivves/gapless/issues\n"
 "POT-Creation-Date: 2024-11-30 13:45+0000\n"
 "PO-Revision-Date: 2024-12-25 18:49+0100\n"
 "Last-Translator: twlvnn kraftwerk <kraft_werk@tutanota.com>\n"
@@ -39,10 +39,10 @@ msgstr ""
 
 #: data/app.metainfo.xml.in:24
 msgid ""
-"Gapless (AKA: G4Music) is a light weight music player written in GTK4, "
+"Gapless (AKA: Gapless) is a light weight music player written in GTK4, "
 "focuses on large music collection."
 msgstr ""
-"„Gapless“ (известен още като: G4Music) е лек музикален плеър за GTK4, който "
+"„Gapless“ (известен още като: Gapless) е лек музикален плеър за GTK4, който "
 "се фокусира върху големи музикални колекции."
 
 #: data/app.metainfo.xml.in:25

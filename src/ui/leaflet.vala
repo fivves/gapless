@@ -1,4 +1,4 @@
-namespace G4 {
+namespace Gapless {
 
     namespace ContentWidth {
         public const int MIN = 340;
@@ -275,6 +275,15 @@ namespace G4 {
             _widget.pop ();
         }
 
+        public void pop_to_root () {
+            var pages = _widget.navigation_stack;
+            if (pages.get_n_items () > 0) {
+                var first_page = pages.get_item (0) as Adw.NavigationPage;
+                if (first_page != null && _widget.visible_page != first_page)
+                    _widget.pop_to_page ((!)first_page);
+            }
+        }
+
         public Gtk.Widget? get_child_by_name (string name) {
             return _widget.find_page (name)?.child;
         }
@@ -374,6 +383,22 @@ namespace G4 {
                 notify_property ("visible-child");
                 run_timeout_once (_widget.transition_duration, () => {
                     _widget.remove ((!)child);
+                });
+            }
+        }
+
+        public void pop_to_root () {
+            var first = _widget.get_first_child ();
+            if (first != null && _widget.get_visible_child () != first) {
+                _widget.visible_child = first;
+                notify_property ("visible-child");
+                run_timeout_once (_widget.transition_duration, () => {
+                    var child = first.get_next_sibling ();
+                    while (child != null) {
+                        var next = child.get_next_sibling ();
+                        _widget.remove (child);
+                        child = next;
+                    }
                 });
             }
         }

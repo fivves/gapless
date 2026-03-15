@@ -1,12 +1,12 @@
-# Slovak translation for g4music.
-# Copyright (C) 2024 g4music's COPYRIGHT HOLDER
-# This file is distributed under the same license as the g4music package.
+# Slovak translation for gapless.
+# Copyright (C) 2024 gapless's COPYRIGHT HOLDER
+# This file is distributed under the same license as the gapless package.
 # Patrik Tapušík <2tapusik00patrik6@gmail.com>,  2024.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: g4music master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/neithern/g4music/issues\n"
+"Project-Id-Version: gapless master\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/fivves/gapless/issues\n"
 "POT-Creation-Date: 2024-10-08 18:25+0000\n"
 "PO-Revision-Date: 2024-11-04 09:02+0100\n"
 "Last-Translator: Patrik Tapušík <2tapusik00patrik6@gmail.com>\n"
@@ -36,10 +36,10 @@ msgstr "hudba;zvuk;prehrávač;multimédia;audio;zoznam;playlist;"
 
 #: data/app.metainfo.xml.in:24
 msgid ""
-"Gapless (AKA: G4Music) is a light weight music player written in GTK4, "
+"Gapless (AKA: Gapless) is a light weight music player written in GTK4, "
 "focuses on large music collection."
 msgstr ""
-"Gapless (AKA: G4Music) je jednoduchý hudobný prehrávač napísaný v GTK4, "
+"Gapless (AKA: Gapless) je jednoduchý hudobný prehrávač napísaný v GTK4, "
 "ktorý sa orientuje na prehrávanie veľkých hudobných zbierok."
 
 #: data/app.metainfo.xml.in:25
@@ -51,8 +51,8 @@ msgid ""
 "Supports most music file types, Samba and any other remote protocols "
 "(depends on GIO and GStreamer)."
 msgstr ""
-"Podporuje väčšinu hudobných formátov, SMB a akékoľvek iné vzdialené protokoly "
-"(závisí na GIO a GStreamer)."
+"Podporuje väčšinu hudobných formátov, SMB a akékoľvek iné vzdialené "
+"protokoly (závisí na GIO a GStreamer)."
 
 #: data/app.metainfo.xml.in:28
 msgid ""
@@ -67,34 +67,36 @@ msgid ""
 "Low memory usage for large music collection with album covers (embedded and "
 "external), no thumbnail caches to store."
 msgstr ""
-"Nízka spotreba pamäte pri veľkých hudobných zbierkach s obalmi albumov (vnorené a "
-"externé), žiadne náhľady na ukladanie."
+"Nízka spotreba pamäte pri veľkých hudobných zbierkach s obalmi albumov "
+"(vnorené a externé), žiadne náhľady na ukladanie."
 
 #: data/app.metainfo.xml.in:30
 msgid ""
 "Group and sorts by album/artist/title, shuffle list, full-text searching."
 msgstr ""
-"Zoskupuje a triedi podľa albumu/umelca/názvu, náhodné zamiešanie zoznamu, vyhľadávanie."
+"Zoskupuje a triedi podľa albumu/umelca/názvu, náhodné zamiešanie zoznamu, "
+"vyhľadávanie."
 
 #: data/app.metainfo.xml.in:31
 msgid ""
 "Fluent adaptive user interface for different screen (Desktop, Tablet, "
 "Mobile)."
 msgstr ""
-"Plynulé adaptívne užívateľské rozhranie pre rôzne obrazovky (Desktop, Tablet, "
-"Telefón)."
+"Plynulé adaptívne užívateľské rozhranie pre rôzne obrazovky (Desktop, "
+"Tablet, Telefón)."
 
 #: data/app.metainfo.xml.in:32
 msgid "Gaussian blurred cover as background, follows GNOME light/dark mode."
-msgstr "Gaussovsky rozmazaný obal ako pozadie, aplikuje GNOME svetlý/tmavý režim."
+msgstr ""
+"Gaussovsky rozmazaný obal ako pozadie, aplikuje GNOME svetlý/tmavý režim."
 
 #: data/app.metainfo.xml.in:33
 msgid ""
 "Supports creating and editing playlists, drag cover to change order or add "
 "to another playlist."
 msgstr ""
-"Podporuje vytváranie a úpravu zoznamov, pretiahnite obal na zmenu poradia alebo "
-"pridajte do iného zoznamu."
+"Podporuje vytváranie a úpravu zoznamov, pretiahnite obal na zmenu poradia "
+"alebo pridajte do iného zoznamu."
 
 #: data/app.metainfo.xml.in:34
 msgid "Supports drag and drop with other apps."

@@ -1,12 +1,12 @@
-# Hebrew translation for g4music.
-# Copyright (C) 2024 g4music's COPYRIGHT HOLDER
-# This file is distributed under the same license as the g4music package.
+# Hebrew translation for gapless.
+# Copyright (C) 2024 gapless's COPYRIGHT HOLDER
+# This file is distributed under the same license as the gapless package.
 # Yosef Or Boczko <yoseforb@gmail.com>, 2024.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: g4music master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/neithern/g4music/issues\n"
+"Project-Id-Version: gapless master\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/fivves/gapless/issues\n"
 "POT-Creation-Date: 2024-11-24 11:17+0000\n"
 "PO-Revision-Date: 2025-01-09 09:25+0200\n"
 "Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
@@ -35,15 +35,15 @@ msgstr "לנגן את המוזיקה שלך באלגנטיות"
 #: data/app.desktop.in:12
 msgid "music;sound;player;media;audio;playlist;"
 msgstr ""
-"מוסיקה;מוזיקה;שמע;צליל;נגן;מדיה;רשימת נגינה;רשימות נגינה;רשימת השמעה;"
-"פלייליסט;"
+"מוסיקה;מוזיקה;שמע;צליל;נגן;מדיה;רשימת נגינה;רשימות נגינה;רשימת "
+"השמעה;פלייליסט;"
 
 #: data/app.metainfo.xml.in:24
 msgid ""
-"Gapless (AKA: G4Music) is a light weight music player written in GTK4, "
+"Gapless (AKA: Gapless) is a light weight music player written in GTK4, "
 "focuses on large music collection."
 msgstr ""
-"‏Gapless (הידוע גם בשם: G4Music) הוא נגן מוזיקה קל משקל שנכתב ב־GTK4, המתמקד "
+"‏Gapless (הידוע גם בשם: Gapless) הוא נגן מוזיקה קל משקל שנכתב ב־GTK4, המתמקד "
 "באוספי מוזיקה גדולים."
 
 #: data/app.metainfo.xml.in:25
@@ -604,6 +604,3 @@ msgstr "אומן לא ידוע"
 
 #~ msgid "Close"
 #~ msgstr "סגירה"
-
-#~ msgid "G4Music"
-#~ msgstr "G4Music"

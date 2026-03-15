@@ -1,12 +1,12 @@
-# Czech translation for g4music.
+# Czech translation for gapless.
 # Copyright (C) 2024 Nanling
-# This file is distributed under the same license as the g4music package.
+# This file is distributed under the same license as the gapless package.
 # Peri123214 <codegemjava@gmail.com>, 2024.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: g4music master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/neithern/g4music/issues\n"
+"Project-Id-Version: gapless master\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/fivves/gapless/issues\n"
 "POT-Creation-Date: 2024-09-30 04:20+0000\n"
 "PO-Revision-Date: 2024-09-30 13:20+0200\n"
 "Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
@@ -45,10 +45,10 @@ msgstr "Nanling"
 
 #: data/app.metainfo.xml.in:22
 msgid ""
-"Gapless (AKA: G4Music) is a light weight music player written in GTK4, "
+"Gapless (AKA: Gapless) is a light weight music player written in GTK4, "
 "focuses on large music collection."
 msgstr ""
-"Gapless (také známý jako G4Music) je lehký hudební přehrávač napsaný v GTK4, "
+"Gapless (také známý jako Gapless) je lehký hudební přehrávač napsaný v GTK4, "
 "zaměřuje se na velkou hudební sbírku."
 
 #: data/app.metainfo.xml.in:23

@@ -1,4 +1,4 @@
-namespace G4 {
+namespace Gapless {
 
     namespace PlayListType {
         public const uint NONE = 0;

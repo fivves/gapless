@@ -1,6 +1,6 @@
-# G4Music Estonian translation.
+# Gapless Estonian translation.
 # Copyright (C) 2022
-# This file is distributed under the same license as the G4Music software.
+# This file is distributed under the same license as the Gapless software.
 # Henri <contact@hen.ee>, 2022.
 #
 msgid ""
@@ -19,8 +19,8 @@ msgstr ""
 "X-Generator: Poedit 3.1.1\n"
 
 #: data/app.desktop.in:3 src/application.vala:225 src/main.vala:24
-msgid "G4Music"
-msgstr "G4Music"
+msgid "Gapless"
+msgstr "Gapless"
 
 #: data/app.desktop.in:4
 msgid "Music Player"
@@ -32,9 +32,7 @@ msgstr "Kuula muusikat"
 
 #: data/app.desktop.in:12
 msgid "music;sound;player;media;audio;playlist;"
-msgstr ""
-"music;sound;player;media;audio;playlist;muusika;heli;muusikamängija;meedia;"
-"esitusloend;"
+msgstr "music;sound;player;media;audio;playlist;muusika;heli;muusikamängija;meedia;esitusloend;"
 
 #: src/gtk/help-overlay.ui:11
 msgctxt "shortcut window"

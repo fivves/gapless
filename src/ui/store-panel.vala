@@ -1,4 +1,4 @@
-namespace G4 {
+namespace Gapless {
 
     namespace SearchMode {
         public const uint ANY = 0;
@@ -24,7 +24,7 @@ namespace G4 {
         public const uint LAST = 4;
     }
 
-    [GtkTemplate (ui = "/com/github/neithern/g4music/gtk/store-panel.ui")]
+    [GtkTemplate (ui = "/com/github/fivves/gapless/gtk/store-panel.ui")]
     public class StorePanel : Gtk.Box, SizeWatcher {
         [GtkChild]
         public unowned Gtk.HeaderBar header_bar;
@@ -32,6 +32,8 @@ namespace G4 {
         public unowned Gtk.Label indicator;
         [GtkChild]
         private unowned Gtk.MenuButton sort_btn;
+        [GtkChild]
+        private unowned Gtk.Button reshuffle_btn;
         [GtkChild]
         private unowned Gtk.ToggleButton search_btn;
         [GtkChild]
@@ -127,9 +129,20 @@ namespace G4 {
             _switcher_btm.stack = stack_view;
             fix_switcher_style (_switcher_btm);
 
+            var gesture_top = new Gtk.GestureClick ();
+            gesture_top.propagation_phase = Gtk.PropagationPhase.CAPTURE;
+            gesture_top.pressed.connect (on_switcher_pressed);
+            _switcher_top.add_controller (gesture_top);
+
+            var gesture_btm = new Gtk.GestureClick ();
+            gesture_btm.propagation_phase = Gtk.PropagationPhase.CAPTURE;
+            gesture_btm.pressed.connect (on_switcher_pressed);
+            _switcher_btm.add_controller (gesture_btm);
+
             app.music_changed.connect (on_music_changed);
             app.music_library_changed.connect (on_music_library_changed);
             app.playlist_added.connect (on_playlist_added);
+            app.list_reshuffled.connect (on_list_reshuffled);
             app.thumbnail_changed.connect (on_thumbnail_changed);
 
             var settings = app.settings;
@@ -162,6 +175,7 @@ namespace G4 {
                 _sort_mode = value;
                 if (value < SORT_MODE_ICONS.length)
                     sort_btn.set_icon_name (SORT_MODE_ICONS[value]);
+                reshuffle_btn.visible = (_current_list == _main_list) && (value == SortMode.SHUFFLE);
                 if (_main_list.get_height () > 0)
                     _main_list.create_factory ();
             }
@@ -183,6 +197,7 @@ namespace G4 {
                     var list = _current_list = (MusicList) value;
                     indicator.visible = _current_list.modified;
                     sort_btn.visible = _current_list == _main_list;
+                    reshuffle_btn.visible = (_current_list == _main_list) && (_sort_mode == SortMode.SHUFFLE);
                     _search_mode = SearchMode.ANY;
                     on_search_btn_toggled ();
 
@@ -565,6 +580,21 @@ namespace G4 {
                 set_to_current_music ();
         }
 
+        private void on_switcher_pressed (int n_press, double x, double y) {
+            if (n_press == 2) {
+                var child = stack_view.visible_child;
+                if (child == _album_stack.widget) {
+                    _album_stack.pop_to_root ();
+                } else if (child == _artist_stack.widget) {
+                    _artist_stack.pop_to_root ();
+                } else if (child == _playlist_stack.widget) {
+                    _playlist_stack.pop_to_root ();
+                } else if (child == _main_list) {
+                    set_to_current_music (true);
+                }
+            }
+        }
+
         private void on_music_changed (Music? music) {
             if (_current_list.playable) {
                 _current_list.current_node = music;
@@ -596,6 +626,11 @@ namespace G4 {
                     initialize_library_page ();
                 }
             }
+        }
+
+        private void on_list_reshuffled () {
+            if (_main_list.get_height () > 0)
+                _main_list.create_factory ();
         }
 
         private void on_playlist_added (Playlist playlist) {
@@ -668,7 +703,15 @@ namespace G4 {
                 _app.current_item = index;
             } else if (_current_list.playable) {
                 var playlist = _current_list.get_as_playlist ();
-                _app.current_item = _app.insert_after_current (playlist) + index;
+                _app.insert_after_current (playlist);
+                var music = playlist.items.get (index);
+                var item_index = find_item_in_model (_app.current_list, music);
+                if (item_index != -1) {
+                    _app.current_item = item_index;
+                } else {
+                    _app.current_music = music;
+                    _app.update_current_item ();
+                }
             }
             if (!_app.player.playing) {
                 _app.player.play ();

@@ -1,11 +1,11 @@
-namespace G4 {
+namespace Gapless {
     namespace BlurMode {
         public const uint NEVER = 0;
         public const uint ALWAYS = 1;
         public const uint ART_ONLY = 2;
     }
 
-    [GtkTemplate (ui = "/com/github/neithern/g4music/gtk/preferences.ui")]
+    [GtkTemplate (ui = "/com/github/fivves/gapless/gtk/preferences.ui")]
     public class PreferencesWindow : Adw.PreferencesWindow {
         [GtkChild]
         unowned Adw.ComboRow blur_row;

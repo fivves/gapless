@@ -1,4 +1,4 @@
-namespace G4 {
+namespace Gapless {
 
     namespace ChildType {
         public const uint8 NONE = 0;

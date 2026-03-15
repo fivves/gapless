@@ -1,12 +1,12 @@
-# Hungarian translation for g4music.
+# Hungarian translation for gapless.
 # Copyright (C) 2023, 2024, 2025 Free Software Foundation, Inc.
-# This file is distributed under the same license as the g4music package.
+# This file is distributed under the same license as the gapless package.
 #
 # Balázs Úr <ur.balazs at fsf dot hu>, 2023, 2024, 2025.
 msgid ""
 msgstr ""
-"Project-Id-Version: g4music master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/neithern/g4music/issues\n"
+"Project-Id-Version: gapless master\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/fivves/gapless/issues\n"
 "POT-Creation-Date: 2025-09-10 13:36+0000\n"
 "PO-Revision-Date: 2025-09-11 09:31+0200\n"
 "Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
@@ -37,11 +37,11 @@ msgstr "zene;zaj;lejátszó;média;hang;lejátszási lista;"
 
 #: data/app.metainfo.xml.in:24
 msgid ""
-"Gapless (AKA: G4Music) is a light weight music player written in GTK4, "
+"Gapless (AKA: Gapless) is a light weight music player written in GTK4, "
 "focuses on large music collection."
 msgstr ""
-"A Szünetmentes (más néven: G4Music) egy GTK4-ben írt, könnyűsúlyú zenelejátszó"
-", amely nagy zenei gyűjteményekre összpontosít."
+"A Szünetmentes (más néven: Gapless) egy GTK4-ben írt, könnyűsúlyú "
+"zenelejátszó, amely nagy zenei gyűjteményekre összpontosít."
 
 #: data/app.metainfo.xml.in:25
 msgid "Features"
@@ -52,54 +52,54 @@ msgid ""
 "Supports most music file types, Samba and any other remote protocols "
 "(depends on GIO and GStreamer)."
 msgstr ""
-"Támogatja a legtöbb zenefájltípust, a Sambát és egyéb távoli protokollokat (a "
-"GIO-tól és a GStreamertől függően)."
+"Támogatja a legtöbb zenefájltípust, a Sambát és egyéb távoli protokollokat "
+"(a GIO-tól és a GStreamertől függően)."
 
 #: data/app.metainfo.xml.in:28
 msgid ""
 "Fast loading and parsing thousands of music files in very few seconds, "
 "monitor local changes."
 msgstr ""
-"Több ezer zenefájl gyors betöltése és feldolgozása néhány másodperc alatt, a h"
-"elyi változtatások figyelése."
+"Több ezer zenefájl gyors betöltése és feldolgozása néhány másodperc alatt, a "
+"helyi változtatások figyelése."
 
 #: data/app.metainfo.xml.in:29
 msgid ""
 "Low memory usage for large music collection with album covers (embedded and "
 "external), no thumbnail caches to store."
 msgstr ""
-"Alacsony memóriahasználat albumborítókkal (beágyazott és külső) rendelkező nag"
-"y zenei gyűjteményeknél, tárolandó bélyegkép-gyorsítótárak nélkül."
+"Alacsony memóriahasználat albumborítókkal (beágyazott és külső) rendelkező "
+"nagy zenei gyűjteményeknél, tárolandó bélyegkép-gyorsítótárak nélkül."
 
 #: data/app.metainfo.xml.in:30
 msgid ""
 "Group and sorts by album/artist/title, shuffle list, full-text searching."
 msgstr ""
-"Csoportosítás és rendezés album, előadó vagy cím szerint, véletlenszerű lejáts"
-"zási lista, teljes szöveges keresés."
+"Csoportosítás és rendezés album, előadó vagy cím szerint, véletlenszerű "
+"lejátszási lista, teljes szöveges keresés."
 
 #: data/app.metainfo.xml.in:31
 msgid ""
 "Fluent adaptive user interface for different screen (Desktop, Tablet, "
 "Mobile)."
 msgstr ""
-"Folyékony, adaptív felhasználói felület különböző képernyőkhöz (asztali számít"
-"ógép, táblagép, mobiltelefon)."
+"Folyékony, adaptív felhasználói felület különböző képernyőkhöz (asztali "
+"számítógép, táblagép, mobiltelefon)."
 
 #: data/app.metainfo.xml.in:32
 msgid "Gaussian blurred cover as background, follows GNOME light/dark mode."
 msgstr ""
-"Gauss-elmosást alkalmazott borító háttérként, ami követi a GNOME világos vagy "
-"sötét módját."
+"Gauss-elmosást alkalmazott borító háttérként, ami követi a GNOME világos "
+"vagy sötét módját."
 
 #: data/app.metainfo.xml.in:33
 msgid ""
 "Supports creating and editing playlists, drag cover to change order or add "
 "to another playlist."
 msgstr ""
-"Támogatja a lejátszási listák létrehozását és szerkesztését, a borító húzásáva"
-"l megváltoztathatja a sorrendet vagy hozzáadhatja egy másik lejátszási listáho"
-"z."
+"Támogatja a lejátszási listák létrehozását és szerkesztését, a borító "
+"húzásával megváltoztathatja a sorrendet vagy hozzáadhatja egy másik "
+"lejátszási listához."
 
 #: data/app.metainfo.xml.in:34
 msgid "Supports drag and drop with other apps."

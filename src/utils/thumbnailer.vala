@@ -1,4 +1,4 @@
-namespace G4 {
+namespace Gapless {
 
     //  Sorted by insert order
     public class LruCache<V> : Object {
@@ -134,6 +134,14 @@ namespace G4 {
             var tags = new Gst.TagList?[] { null };
             var args = new string[] { music.cover_key, music.cover_uri ?? "", music.get_abbreviation () };
             var pixbuf = yield run_async<Gdk.Pixbuf?> (() => {
+                var cached_pixbuf = load_pixbuf_from_disk_cache (args[0], size * _scale_factor);
+                if (cached_pixbuf != null) {
+                    if (size <= ICON_SIZE) {
+                        put_pixbuf_to_cache (args[0], (!)cached_pixbuf);
+                    }
+                    return cached_pixbuf;
+                }
+
                 var tag = tags[0] = parse_gst_tags (file);
                 File? cover_file = null;
                 Gdk.Pixbuf? pixbuf = null;
@@ -156,6 +164,10 @@ namespace G4 {
                     if (minbuf == null) {
                         minbuf = create_clamp_pixbuf ((!)pixbuf, ICON_SIZE * _scale_factor);
                         put_pixbuf_to_cache (args[0], (!)minbuf);
+                        save_pixbuf_to_disk_cache (args[0], (!)minbuf, ICON_SIZE * _scale_factor);
+                    }
+                    if (size > ICON_SIZE) {
+                        save_pixbuf_to_disk_cache (args[0], (!)pixbuf, size * _scale_factor);
                     }
                     return size <= ICON_SIZE ? minbuf : pixbuf;
                 }
@@ -164,14 +176,21 @@ namespace G4 {
                 //  Run in single_thread_pool for samba to save connections
             }, false, file.has_uri_scheme ("smb"));
 
+            var changed = false;
             if (!is_native && tags[0] != null && music.from_gst_tags ((!)tags[0])) {
                 //  Update for remote file, since it maybe cached but not parsed from file early
+                changed = true;
+            }
+            if (music.cover_key != args[0]) {
+                music.cover_key = args[0];
+                changed = true;
+            }
+            if (args[1].length > 0) {
+                music.cover_uri = args[1];
+            }
+            if (changed) {
                 tag_updated (music);
             }
-            if (music.cover_key != args[0])
-                music.cover_key = args[0];
-            if (args[1].length > 0)
-                music.cover_uri = args[1];
             return pixbuf;
         }
 
@@ -219,6 +238,29 @@ namespace G4 {
         private void put_pixbuf_to_cache (string cover_key, Gdk.Pixbuf pixbuf) {
             lock (_album_pixbufs) {
                 _album_pixbufs.put (cover_key, pixbuf);
+            }
+        }
+
+        private Gdk.Pixbuf? load_pixbuf_from_disk_cache (string cover_key, int size) {
+            if (cover_key.length <= 3) return null;
+            var filename = "%s-%d.png".printf (Checksum.compute_for_string (ChecksumType.MD5, cover_key), size);
+            var path = Path.build_filename (Environment.get_user_cache_dir (), "gapless", "thumbnails", filename);
+            try {
+                return new Gdk.Pixbuf.from_file (path);
+            } catch (Error e) {
+                return null;
+            }
+        }
+
+        private void save_pixbuf_to_disk_cache (string cover_key, Gdk.Pixbuf pixbuf, int size) {
+            if (cover_key.length <= 3) return;
+            var filename = "%s-%d.png".printf (Checksum.compute_for_string (ChecksumType.MD5, cover_key), size);
+            var dir = Path.build_filename (Environment.get_user_cache_dir (), "gapless", "thumbnails");
+            DirUtils.create_with_parents (dir, 0755);
+            var path = Path.build_filename (dir, filename);
+            try {
+                pixbuf.save (path, "png");
+            } catch (Error e) {
             }
         }
     }

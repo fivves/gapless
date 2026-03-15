@@ -1,11 +1,12 @@
-# Basque translation for g4music.
-# Copyright (C) 2023 g4music's COPYRIGHT HOLDER
-# This file is distributed under the same license as the g4music package.
+# Basque translation for gapless.
+# Copyright (C) 2023 gapless's COPYRIGHT HOLDER
+# This file is distributed under the same license as the gapless package.
 # Asier Sarasua Garmendia <asiersarasua@ni.eus>, 2023.
 #
 msgid ""
-msgstr "Project-Id-Version: g4music master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/neithern/g4music/-/issues\n"
+msgstr ""
+"Project-Id-Version: gapless master\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/fivves/gapless/-/issues\n"
 "POT-Creation-Date: 2023-08-17 10:19+0000\n"
 "PO-Revision-Date: 2023-08-18 18:04+0000\n"
 "Last-Translator: Asier Sarasua Garmendia <asiersarasua@ni.eus>\n"
@@ -16,8 +17,8 @@ msgstr "Project-Id-Version: g4music master\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: data/app.desktop.in:3 src/application.vala:232 src/main.vala:24
-msgid "G4Music"
-msgstr "G4Music"
+msgid "Gapless"
+msgstr "Gapless"
 
 #: data/app.desktop.in:4
 msgid "Music Player"
@@ -29,7 +30,8 @@ msgstr "Erreproduzitu musika"
 
 #: data/app.desktop.in:12
 msgid "music;sound;player;media;audio;playlist;"
-msgstr "musika;soinua;erreproduzigailua;multimedia;audioa;erreprodukzio-zerrenda;"
+msgstr ""
+"musika;soinua;erreproduzigailua;multimedia;audioa;erreprodukzio-zerrenda;"
 
 #: src/gtk/help-overlay.ui:11
 msgctxt "shortcut window"
@@ -221,7 +223,8 @@ msgstr "Ausaz"
 
 #: src/action-handles.vala:184
 msgid "A fast, fluent, light weight music player written in GTK4."
-msgstr "GTK4 teknologiarekin idatzitako musika-erreproduzigailu arin eta azkarra."
+msgstr ""
+"GTK4 teknologiarekin idatzitako musika-erreproduzigailu arin eta azkarra."
 
 #. Translators: Replace "translator-credits" with your names, one name per line
 #: src/action-handles.vala:186
@@ -293,7 +296,8 @@ msgstr "Erreproduzitu hurrengoa"
 msgid ""
 "Drag and drop music files here,\n"
 "or change music location: "
-msgstr "Arrastatu eta jaregin musika-fitxategiak hemen,\n"
+msgstr ""
+"Arrastatu eta jaregin musika-fitxategiak hemen,\n"
 "edo aldatu musikaren kokalekua: "
 
 #: src/ui/preferences.vala:46 src/ui/preferences.vala:67

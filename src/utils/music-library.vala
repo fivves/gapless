@@ -1,4 +1,4 @@
-namespace G4 {
+namespace Gapless {
 
     namespace SortMode {
         public const uint ALBUM = 0;
@@ -467,10 +467,18 @@ namespace G4 {
     }
 
     public bool merge_items_to_store (ListStore store, GenericArray<Music> arr, ref uint position) {
+        var map = new GenericSet<Object?> (direct_hash, direct_equal);
+        arr.foreach ((obj) => map.add (obj));
+        uint removed_before = 0;
+        var limit = uint.min (position, store.get_n_items ());
+        for (uint i = 0; i < limit; i++) {
+            if (map.contains (store.get_item (i)))
+                removed_before++;
+        }
         var first_pos = -1;
-        var removed = remove_items_from_store (store, arr, out first_pos);
-        if (position >= first_pos + removed)
-            position -= removed;
+        remove_items_from_store (store, arr, out first_pos);
+        if (position >= removed_before)
+            position -= removed_before;
         position = uint.min (position, store.get_n_items ());
         store.splice (position, 0, (Object[]) arr.data);
         return !(arr.length == 1 && arr[0] == store.get_item (first_pos));

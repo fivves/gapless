@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/neithern/g4music/issues\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/fivves/gapless/issues\n"
 "POT-Creation-Date: 2024-11-02 21:22+0000\n"
 "PO-Revision-Date: 2024-11-15 20:00+0100\n"
 "Last-Translator: Quentin PAGÈS\n"
@@ -37,10 +37,10 @@ msgstr "musica;son;lector;mèdia;àudio;audio;lista de lectura;"
 
 #: data/app.metainfo.xml.in:24
 msgid ""
-"Gapless (AKA: G4Music) is a light weight music player written in GTK4, "
+"Gapless (AKA: Gapless) is a light weight music player written in GTK4, "
 "focuses on large music collection."
 msgstr ""
-"Gapless (tanben conegut coma G4Music) es un lector de musica leugièr escrich "
+"Gapless (tanben conegut coma Gapless) es un lector de musica leugièr escrich "
 "en GTK4, se concentra sus las grandas colleccions musicalas."
 
 #: data/app.metainfo.xml.in:25
@@ -599,9 +599,6 @@ msgstr "Artista desconegut"
 
 #~ msgid "Prefer dark theme"
 #~ msgstr "Preferir lo tèma escur"
-
-#~ msgid "G4Music"
-#~ msgstr "G4Music"
 
 #~ msgid "Repeat Music"
 #~ msgstr "Repetir la cançon"

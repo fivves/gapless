@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/neithern/g4music/issues\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/fivves/gapless/issues\n"
 "POT-Creation-Date: 2024-10-11 01:38+0000\n"
 "PO-Revision-Date: 2024-10-30 18:08+0100\n"
 "Last-Translator: Nathan Follens <nfollens@gnome.org>\n"
@@ -33,16 +33,14 @@ msgstr "Speel uw muziek op elegante wijze af"
 
 #: data/app.desktop.in:12
 msgid "music;sound;player;media;audio;playlist;"
-msgstr ""
-"music;sound;player;media;audio;playlist;muziek;geluid;speler;muziekspeler;"
-"speellijst;afspeellijst;"
+msgstr "music;sound;player;media;audio;playlist;muziek;geluid;speler;muziekspeler;speellijst;afspeellijst;"
 
 #: data/app.metainfo.xml.in:24
 msgid ""
-"Gapless (AKA: G4Music) is a light weight music player written in GTK4, "
+"Gapless (AKA: Gapless) is a light weight music player written in GTK4, "
 "focuses on large music collection."
 msgstr ""
-"Gapless (AKA: G4Music) is een lichte muziekspeler, gemaakt in GTK4, gericht "
+"Gapless (AKA: Gapless) is een lichte muziekspeler, gemaakt in GTK4, gericht "
 "op grote muziekverzamelingen."
 
 #: data/app.metainfo.xml.in:25
@@ -91,16 +89,16 @@ msgstr ""
 #: data/app.metainfo.xml.in:32
 msgid "Gaussian blurred cover as background, follows GNOME light/dark mode."
 msgstr ""
-"Heeft een gaussiaans vervaagde hoes als achtergrond, volgt de lichte/"
-"donkere modus van GNOME."
+"Heeft een gaussiaans vervaagde hoes als achtergrond, volgt de lichte/donkere "
+"modus van GNOME."
 
 #: data/app.metainfo.xml.in:33
 msgid ""
 "Supports creating and editing playlists, drag cover to change order or add "
 "to another playlist."
 msgstr ""
-"Ondersteunt het aanmaken en bewerken van afspeellijsten, versleep de hoes "
-"om de volgorde te wijzigen of aan een andere afspeellijst toe te voegen."
+"Ondersteunt het aanmaken en bewerken van afspeellijsten, versleep de hoes om "
+"de volgorde te wijzigen of aan een andere afspeellijst toe te voegen."
 
 #: data/app.metainfo.xml.in:34
 msgid "Supports drag and drop with other apps."
@@ -590,9 +588,6 @@ msgstr "Onbekend album"
 #: src/utils/music.vala:3
 msgid "Unknown Artist"
 msgstr "Onbekende artiest"
-
-#~ msgid "G4Music"
-#~ msgstr "G4Music"
 
 #~ msgid "Play music"
 #~ msgstr "Luister naar muziek"

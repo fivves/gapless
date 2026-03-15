@@ -1,4 +1,4 @@
-namespace G4 {
+namespace Gapless {
 
     public class PlaylistDialog : Dialog {
         private Gtk.ToggleButton search_btn = new Gtk.ToggleButton ();

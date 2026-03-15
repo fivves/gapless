@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/neithern/g4music/issues\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/fivves/gapless/issues\n"
 "POT-Creation-Date: 2024-10-11 06:29+0000\n"
 "PO-Revision-Date: 2024-10-11 13:49+0300\n"
 "Last-Translator: Artur So <arturios2005@mail.ru>\n"
@@ -32,16 +32,14 @@ msgstr "Воспроизводите музыку элегантно"
 
 #: data/app.desktop.in:12
 msgid "music;sound;player;media;audio;playlist;"
-msgstr ""
-"music;sound;player;media;audio;playlist;музыка;звук;проигрыватель;медиа;"
-"аудио;список;воспроизведения;"
+msgstr "music;sound;player;media;audio;playlist;музыка;звук;проигрыватель;медиа;аудио;список;воспроизведения;"
 
 #: data/app.metainfo.xml.in:24
 msgid ""
-"Gapless (AKA: G4Music) is a light weight music player written in GTK4, "
+"Gapless (AKA: Gapless) is a light weight music player written in GTK4, "
 "focuses on large music collection."
 msgstr ""
-"Gapless (AKA: G4Music) - это легкий музыкальный проигрыватель, написанный на "
+"Gapless (AKA: Gapless) - это легкий музыкальный проигрыватель, написанный на "
 "GTK4, ориентированный на работу с большими музыкальными коллекциями."
 
 #: data/app.metainfo.xml.in:25

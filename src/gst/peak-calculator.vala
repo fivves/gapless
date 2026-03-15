@@ -1,4 +1,4 @@
-namespace G4 {
+namespace Gapless {
 
     public class LevelCalculator {
         struct Peak {

@@ -1,4 +1,4 @@
-namespace G4 {
+namespace Gapless {
 
     public enum Result {
         CANCEL = -1,
@@ -30,6 +30,9 @@ namespace G4 {
         private Graphene.Size _cell_size = Graphene.Size ();
         private Graphene.Size _item_size = Graphene.Size ();
         private int _scrolling_item = -1;
+
+        private static GenericArray<Music>? _dragged_musics = null;
+        private static MusicList? _dragged_source = null;
 
         public signal void item_activated (uint position, Object? obj);
         public signal void item_binded (Gtk.ListItem item);
@@ -361,7 +364,7 @@ namespace G4 {
 
         public int set_to_current_item (bool scroll = true) {
             var item = find_item_in_model (_filter_model, _current_node);
-            if (item != -1 && scroll)
+            if (item != -1 && scroll && _dragged_musics == null)
                 scroll_to_item (item);
             return item;
         }
@@ -396,7 +399,7 @@ namespace G4 {
             if (_selection.get_selection ().get_size () > 1) {
                 var action = ACTION_WIN + ACTION_BUTTON;
                 var menu = new Menu ();
-                menu.append_item (create_menu_item_for_button (Button.INSERT, _("Play at _Next"), action));
+                menu.append_item (create_menu_item_for_button (Button.INSERT, _("Play _Next"), action));
                 if (_has_add_to_queque)
                     menu.append_item (create_menu_item_for_button (Button.QUEUE, _("Add to _Queue"), action));
                 menu.append_item (create_menu_item_for_button (Button.ADDTO, _("Add to _Playlist…"), action));
@@ -412,7 +415,7 @@ namespace G4 {
                 var menu = create_menu_for_music (music, _app.thumbnailer.find (music) is Gdk.Texture);
                 if (music != _app.current_music) {
                     /* Translators: Play this music at next position of current playing music */
-                    menu.insert_item (0, create_menu_item_for_uri (uri, _("Play at _Next"), ACTION_APP + ACTION_PLAY_AT_NEXT));
+                    menu.insert_item (0, create_menu_item_for_uri (uri, _("Play _Next"), ACTION_APP + ACTION_PLAY_AT_NEXT));
                     if (_has_add_to_queque)
                         menu.insert_item (1, create_menu_item_for_uri (uri, _("Add to _Queue"), ACTION_APP + ACTION_ADD_TO_QUEUE));
                 }
@@ -435,7 +438,7 @@ namespace G4 {
             item_created (item);
 
             if (_selectable) {
-                create_drag_source (child.image, item);
+                create_drag_source (child, item);
                 child.create_music_menu.connect (on_create_music_menu);
                 make_right_clickable (child, child.show_popover_menu);
                 make_long_pressable (child, (widget, x, y) => multi_selection = true);
@@ -497,6 +500,10 @@ namespace G4 {
         private int _dropping_item = -1;
 
         private bool on_drop_done (Value value, double x, double y) {
+            if (_edge_scroll_handle != 0) {
+                Source.remove (_edge_scroll_handle);
+                _edge_scroll_handle = 0;
+            }
             if (_editable) {
                 uint position = uint.min (_dropping_item, visible_count);
                 if (value.holds (typeof (Playlist))) {
@@ -505,6 +512,12 @@ namespace G4 {
                         position = _data_store.get_n_items ();
                     var playlist = (Playlist) value.get_object ();
                     modified |= merge_items_to_store (_data_store, playlist.items, ref position);
+                    if (playlist.items.length > 0) {
+                        var index = find_item_in_model (_filter_model, playlist.items.get (0));
+                        if (index != -1) {
+                            run_timeout_once (50, () => scroll_to_item (index, true));
+                        }
+                    }
                 } else {
                     var files = get_dropped_files (value);
                     _app.open_files_async.begin (files, position, false,
@@ -516,12 +529,28 @@ namespace G4 {
         }
 
         private uint _activate_handle = 0;
+        private uint _edge_scroll_handle = 0;
 
         private Gdk.DragAction on_drop_motion (double x, double y) {
+            if (_edge_scroll_handle != 0) {
+                Source.remove (_edge_scroll_handle);
+                _edge_scroll_handle = 0;
+            }
+            var height = get_height ();
+            if (y < 50 || y > height - 50) {
+                var step = (y < 50) ? -20.0 : 20.0;
+                _edge_scroll_handle = GLib.Timeout.add (50, () => {
+                    var adj = _scroll_view.vadjustment;
+                    adj.value = double.max (adj.lower, double.min (adj.upper - adj.page_size, adj.value + step));
+                    return true;
+                });
+            }
+
             _columns = get_grid_view_item_size (_grid_view, ref _item_size, ref _cell_size);
             var col = (int) (x / _cell_size.width);
             var row = (int) ((y + _scroll_view.vadjustment.value) / _cell_size.height);
             var index = (int) _columns * row + col;
+
             if (_dropping_item != index && _filter_model.get_item (index) is Playlist) {
                 if (_activate_handle != 0)
                     Source.remove (_activate_handle);
@@ -546,13 +575,22 @@ namespace G4 {
             var source = new Gtk.DragSource ();
             source.actions = Gdk.DragAction.LINK;
             source.drag_begin.connect ((drag) => {
-                var list = find_ancestry_with_type (widget, typeof (MusicList));
-                (list as MusicList)?.on_drag_begin (source, drag, widget, point);
+                var list = find_ancestry_with_type (widget, typeof (MusicList)) as MusicList;
+                if (list != null) {
+                    var playlist = ((!)list).create_playlist_for_selection ();
+                    _dragged_musics = playlist.items;
+                    _dragged_source = list;
+                    ((!)list).on_drag_begin (source, drag, widget, point);
+                }
             });
             source.prepare.connect ((x, y) => {
                 point.init ((float) x, (float) y);
                 var list = find_ancestry_with_type (widget, typeof (MusicList));
                 return (list as MusicList)?.on_drag_prepare (item.item as Music);
+            });
+            source.drag_end.connect ((drag, delete_data) => {
+                _dragged_musics = null;
+                _dragged_source = null;
             });
             widget.add_controller (source);
         }
@@ -563,7 +601,13 @@ namespace G4 {
             target.accept.connect ((drop) => drop.formats.contain_gtype (typeof (Playlist))
                                 || drop.formats.contain_gtype (typeof (Gdk.FileList)));
             target.motion.connect (on_drop_motion);
-            target.leave.connect (() => run_timeout_once (100, () => dropping_item = -1));
+            target.leave.connect (() => {
+                if (_edge_scroll_handle != 0) {
+                    Source.remove (_edge_scroll_handle);
+                    _edge_scroll_handle = 0;
+                }
+                run_timeout_once (100, () => dropping_item = -1);
+            });
 #if GTK_4_10
             target.drop.connect (on_drop_done);
 #else
@@ -644,7 +688,7 @@ namespace G4 {
             _header_title = title;
 
             var insert_btn = new Gtk.Button.from_icon_name ("format-indent-more-symbolic");
-            insert_btn.tooltip_text = _("Play at Next");
+            insert_btn.tooltip_text = _("Play Next");
             insert_btn.clicked.connect (() => button_command (Button.INSERT));
             insert_btn.name = Button.INSERT;
             _action_buttons.add (insert_btn);
@@ -676,7 +720,7 @@ namespace G4 {
 
         private void update_grid_view () {
             var enable = _multi_selection || !_single_click_activate;
-            _grid_view.enable_rubberband = enable;
+            _grid_view.enable_rubberband = false;
             _grid_view.single_click_activate = !enable;
             _binding_items.foreach ((music, item) => item.selectable = enable);
         }

@@ -1,4 +1,4 @@
-namespace G4 {
+namespace Gapless {
 
     namespace TagGroup {
         public const int BASIC = 1;

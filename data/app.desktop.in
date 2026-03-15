@@ -2,7 +2,7 @@
 Name=Gapless
 GenericName=Music Player
 Comment=Play your music elegantly
-Exec=g4music %U
+Exec=gapless %U
 Icon=@app_id@
 Terminal=false
 Type=Application

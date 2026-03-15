@@ -1,4 +1,4 @@
-namespace G4 {
+namespace Gapless {
 
     public class Application : Adw.Application {
         private ActionHandles? _actions = null;
@@ -26,6 +26,7 @@ namespace G4 {
         public signal void music_cover_parsed (Music music, Gdk.Pixbuf? cover, string? cover_uri);
         public signal void music_library_changed (bool external);
         public signal void playlist_added (Playlist playlist);
+        public signal void list_reshuffled ();
         public signal void thumbnail_changed (Music music, Gdk.Paintable paintable);
 
         public Application () {
@@ -364,7 +365,14 @@ namespace G4 {
             var changed = merge_items_to_store (_music_queue, playlist.items, ref position);
             list_modified |= changed;
             if (play_now) {
-                current_item = (int) position;
+                var music = playlist.items.get (0);
+                var index = find_item_in_model (_current_list, music);
+                if (index != -1) {
+                    current_item = index;
+                } else {
+                    current_music = music;
+                    update_current_item ();
+                }
                 _player.play ();
             } else if (changed) {
                 update_current_item ();
@@ -697,7 +705,7 @@ namespace G4 {
             }
         }
 
-        private void update_current_item () {
+        public void update_current_item () {
             var index = find_item_in_model (_current_list, _current_music, _current_index);
             if (index == -1 && _current_music != null) {
                 unowned var uri = ((!)_current_music).uri;

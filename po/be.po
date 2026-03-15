@@ -1,12 +1,12 @@
-# Belarusian translation for g4music.
-# Copyright (C) 2023 g4music's COPYRIGHT HOLDER
-# This file is distributed under the same license as the g4music package.
+# Belarusian translation for gapless.
+# Copyright (C) 2023 gapless's COPYRIGHT HOLDER
+# This file is distributed under the same license as the gapless package.
 # Yuras Shumovich <shumovichy@gmail.com>, 2023.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: g4music master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/neithern/g4music/issues\n"
+"Project-Id-Version: gapless master\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/fivves/gapless/issues\n"
 "POT-Creation-Date: 2024-10-11 01:38+0000\n"
 "PO-Revision-Date: 2024-10-22 16:13+0300\n"
 "Last-Translator: Yuras Shumovich <shumovichy@gmail.com>\n"
@@ -35,15 +35,15 @@ msgstr "Вытанчанае прайграванне музыкі"
 #: data/app.desktop.in:12
 msgid "music;sound;player;media;audio;playlist;"
 msgstr ""
-"music;sound;player;media;audio;playlist;музыка;гук;прайгравальнік;плэер;"
-"мультымедыя;аўдыя;спіс прайгравання;плэйліст;плэй-ліст;"
+"music;sound;player;media;audio;playlist;музыка;гук;прайгравальнік;плэер;мультымедыя;аўдыя;спіс "
+"прайгравання;плэйліст;плэй-ліст;"
 
 #: data/app.metainfo.xml.in:24
 msgid ""
-"Gapless (AKA: G4Music) is a light weight music player written in GTK4, "
+"Gapless (AKA: Gapless) is a light weight music player written in GTK4, "
 "focuses on large music collection."
 msgstr ""
-"Gapless (таксама вядомы як G4Music) легкаважны прайгравальнік музыкі, які "
+"Gapless (таксама вядомы як Gapless) легкаважны прайгравальнік музыкі, які "
 "напісаны на GTK4 і накіраваны на працу з вялікімі аўдыякалекцыямі."
 
 #: data/app.metainfo.xml.in:25
@@ -609,6 +609,3 @@ msgstr "Невядомы выканаўца"
 #, c-format
 #~ msgid "No playlist found in: %s"
 #~ msgstr "Спісы прайгравання не знойдзены ў: «%s»"
-
-#~ msgid "G4Music"
-#~ msgstr "G4Music"
