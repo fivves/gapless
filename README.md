@@ -9,7 +9,6 @@ Gapless is a light weight music player written in GTK4, focuses on large music c
 ## Features
 - Supports most music file types, Samba and any other remote protocols (depends on GIO and GStreamer).
 - Fast loading and parsing thousands of music files in very few seconds, monitor local changes.
-- Low memory usage for large music collection with album covers (embedded and external), no thumbnail caches to store.
 - Group and sorts by album/artist/title, shuffle list, full-text searching.
 - Fluent adaptive user interface for different screen (Desktop, Tablet, Mobile).
 - Gaussian blurred cover as background, follows GNOME light/dark mode.
