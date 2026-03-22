@@ -279,8 +279,11 @@ namespace Gapless {
         private void bind_music_list_properties (MusicList list, bool editable = false) {
             _app.settings.bind ("compact-playlist", list, "compact-list", SettingsBindFlags.DEFAULT);
             _app.settings.bind ("single-click-activate", list, "single-click-activate", SettingsBindFlags.DEFAULT);
-            if (list.item_type != typeof (Music))
-                _app.settings.bind ("grid-mode", list, "grid-mode", SettingsBindFlags.DEFAULT);
+            if (list.item_type == typeof (Artist)) {
+                _app.settings.bind ("grid-mode-artists", list, "grid-mode", SettingsBindFlags.DEFAULT);
+            } else if (list.item_type == typeof (Album) || list.item_type == typeof (Playlist)) {
+                _app.settings.bind ("grid-mode-albums", list, "grid-mode", SettingsBindFlags.DEFAULT);
+            }
             if (editable)
                 list.bind_property ("modified", this, "modified");
         }

@@ -29,10 +29,22 @@
             <child>
               <object class="AdwActionRow">
                 <property name="icon-name">view-grid-symbolic</property>
-                <property name="title" translatable="yes">Grid view for artists/albums</property>
-                <property name="activatable_widget">grid_btn</property>
+                <property name="title" translatable="yes">Grid view for artists</property>
+                <property name="activatable_widget">grid_artists_btn</property>
                 <child>
-                  <object class="GtkSwitch" id="grid_btn">
+                  <object class="GtkSwitch" id="grid_artists_btn">
+                    <property name="valign">center</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="icon-name">view-grid-symbolic</property>
+                <property name="title" translatable="yes">Grid view for albums</property>
+                <property name="activatable_widget">grid_albums_btn</property>
+                <child>
+                  <object class="GtkSwitch" id="grid_albums_btn">
                     <property name="valign">center</property>
                   </object>
                 </child>

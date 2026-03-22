@@ -68,6 +68,7 @@ namespace Gapless {
                 warning ("Initialize MPRIS session failed\n");
 
             var settings = _settings = new Settings (application_id); 
+            migrate_grid_settings (settings);
             settings.bind ("color-scheme", this, "color-scheme", SettingsBindFlags.DEFAULT);
             settings.bind ("music-dir", this, "music-folder", SettingsBindFlags.DEFAULT);
             settings.bind ("sort-mode", this, "sort-mode", SettingsBindFlags.DEFAULT);
@@ -77,6 +78,17 @@ namespace Gapless {
             settings.bind ("replay-gain", _player, "replay-gain", SettingsBindFlags.DEFAULT);
             settings.bind ("audio-sink", _player, "audio-sink", SettingsBindFlags.DEFAULT);
             settings.bind ("volume", _player, "volume", SettingsBindFlags.DEFAULT);
+        }
+
+        private void migrate_grid_settings (Settings settings) {
+            if (settings.get_user_value ("grid-mode") == null)
+                return;
+
+            var legacy_value = settings.get_boolean ("grid-mode");
+            if (settings.get_user_value ("grid-mode-artists") == null)
+                settings.set_boolean ("grid-mode-artists", legacy_value);
+            if (settings.get_user_value ("grid-mode-albums") == null)
+                settings.set_boolean ("grid-mode-albums", legacy_value);
         }
 
         public override void activate () {
