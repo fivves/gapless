@@ -84,7 +84,7 @@ namespace Gapless {
             base.titled (artist_name, music.uri);
             base.artist = artist_name;
             base.album_artist = music.album_artist;
-            base._artist_key = artist_name.collate_key_for_filename ();
+            base._artist_key = Music.create_sort_key (artist_name, true);
             base.date = music.date;
             base.uri = music.uri;
         }
@@ -96,7 +96,7 @@ namespace Gapless {
         }
 
         public override string get_abbreviation () {
-            return parse_abbreviation (artist);
+            return parse_abbreviation (Music.normalize_sort_name (artist, true));
         }
 
         public bool add_music (Music music) {
@@ -252,7 +252,7 @@ namespace Gapless {
         public void set_title (string title) {
             this.album = title;
             this.title = title;
-            _title_key = title.collate_key_for_filename ();
+            _title_key = Music.create_sort_key (title);
         }
 
         protected override void sort (GenericArray<Music> arr) {

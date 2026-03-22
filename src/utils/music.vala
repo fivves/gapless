@@ -37,7 +37,7 @@ namespace Gapless {
         public Music.titled (string title, string uri) {
             this.title = title;
             this.uri = uri;
-            _title_key = title.collate_key_for_filename ();
+            _title_key = create_sort_key (title);
         }
 
         public unowned string album_key {
@@ -93,13 +93,13 @@ namespace Gapless {
             if (tags.peek_string_index (Gst.Tags.ARTIST, 0, out ar)
                     && ar != null && strcmp (artist, ar) != 0) {
                 artist = (!)ar;
-                _artist_key = artist.collate_key_for_filename ();
+                _artist_key = create_sort_key (artist, true);
                 changed = true;
             }
             if (tags.peek_string_index (Gst.Tags.TITLE, 0, out ti)
                     && ti != null && strcmp (title, ti) != 0) {
                 title = (!)ti;
-                _title_key = title.collate_key_for_filename ();
+                _title_key = create_sort_key (title);
                 changed = true;
             }
             if (tags.peek_string_index (Gst.Tags.ALBUM_ARTIST, 0, out aa)
@@ -168,8 +168,8 @@ namespace Gapless {
             if (_cover_key == null || ((!)_cover_key).length == 0) _cover_key = uri;
 
             update_album_key ();
-            _artist_key = artist.collate_key_for_filename ();
-            _title_key = title.collate_key_for_filename ();
+            _artist_key = create_sort_key (artist, true);
+            _title_key = create_sort_key (title);
         }
 
         public void serialize (DataOutputBytes dos) throws IOError {
@@ -219,11 +219,11 @@ namespace Gapless {
                 var len = sa.length;
                 if (title.length == 0) {
                     title = len >= 1 ? sa[len - 1].strip () : name;
-                    _title_key = title.collate_key_for_filename ();
+                    _title_key = create_sort_key (title);
                 }
                 if (artist.length == 0) {
                     artist = len >= 2 ? sa[len - 2].strip () : UNKNOWN_ARTIST;
-                    _artist_key = artist.collate_key_for_filename ();
+                    _artist_key = create_sort_key (artist, true);
                 }
                 if (track_index == 0) {
                     if (track_index == 0 && len >= 3)
@@ -235,12 +235,38 @@ namespace Gapless {
             if (album.length == 0) {
                 //  assume folder name as the album
                 album = file.get_parent ()?.get_basename () ?? UNKNOWN_ALBUM;
-                _album_key = album.collate_key_for_filename ();
+                _album_key = create_album_sort_key (album);
             }
         }
 
         private void update_album_key () {
-            _album_key = (album + date.to_string () + album_artist).collate_key_for_filename ();
+            _album_key = create_album_sort_key (album, date, album_artist);
+        }
+
+        public static string normalize_sort_name (string text, bool ignore_leading_the = false) {
+            var normalized = text.strip ();
+            if (ignore_leading_the && normalized.length > 4) {
+                var folded = normalized.casefold ();
+                if (folded.has_prefix ("the ")) {
+                    var offset = normalized.index_of_nth_char (4);
+                    if (offset >= 0) {
+                        var trimmed = normalized.substring (offset).strip ();
+                        if (trimmed.length > 0)
+                            normalized = trimmed;
+                    }
+                }
+            }
+            return normalized.casefold ();
+        }
+
+        public static string create_sort_key (string text, bool ignore_leading_the = false) {
+            return normalize_sort_name (text, ignore_leading_the).collate_key_for_filename ();
+        }
+
+        private static string create_album_sort_key (string album, uint32 date = 0, string album_artist = "") {
+            return (normalize_sort_name (album)
+                + date.to_string ()
+                + normalize_sort_name (album_artist, true)).collate_key_for_filename ();
         }
 
         public static int compare_by_album (Music s1, Music s2) {
