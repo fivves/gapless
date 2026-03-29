@@ -22,7 +22,8 @@ Gapless is a light weight music player written in GTK4, focuses on large music c
 
 ## Free BSD Dependencies (Arch Linux)
 ```bash
-sudo pacman -S vala meson libadwaita gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly gst-libav gettext gtk4
+sudo pacman -S vala meson libadwaita gstreamer gst-plugins-base \
+  gst-plugins-good gst-plugins-bad gst-plugins-ugly gst-libav gettext gtk4
 ```
 
 ## How to build 
