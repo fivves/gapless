@@ -292,16 +292,16 @@ namespace Gapless {
             var list = new MusicList (_app, typeof (Album), artist);
             list.item_activated.connect ((position, obj) => create_stack_page (artist, obj as Album));
             list.item_binded.connect ((item) => {
-                var cell = (MusicWidget) item.child;
+                var cell = get_list_item_widget (item);
                 var album = (Album) item.item;
                 var album_artist = album.album_artist;
-                cell.music = album;
-                cell.paintable = _loading_paintable;
-                cell.title = album.album;
+                ((!)cell).music = album;
+                ((!)cell).paintable = _loading_paintable;
+                ((!)cell).title = album.album;
                 var subtitle = album.get_date_string ();
                 if (artist == null && album_artist.length > 0)
                     subtitle = album_artist + " " + subtitle;
-                cell.subtitle = subtitle.length > 0 ? subtitle : " ";
+                ((!)cell).subtitle = subtitle.length > 0 ? subtitle : " ";
             });
             bind_music_list_properties (list);
             return list;
@@ -311,13 +311,13 @@ namespace Gapless {
             var list = new MusicList (_app, typeof (Artist));
             list.item_activated.connect ((position, obj) => create_stack_page (obj as Artist));
             list.item_binded.connect ((item) => {
-                var cell = (MusicWidget) item.child;
+                var cell = get_list_item_widget (item);
                 var artist = (Artist) item.item;
-                cell.cover.ratio = 0.5;
-                cell.music = artist;
-                cell.paintable = _loading_paintable;
-                cell.title = artist.artist;
-                cell.subtitle = "";
+                ((!)cell).cover.ratio = 0.5;
+                ((!)cell).music = artist;
+                ((!)cell).paintable = _loading_paintable;
+                ((!)cell).title = artist.artist;
+                ((!)cell).subtitle = "";
             });
             bind_music_list_properties (list);
             return list;
@@ -330,10 +330,10 @@ namespace Gapless {
             var list = new MusicList (_app, typeof (Music), album, is_playlist);
             list.item_activated.connect ((position, obj) => play_current_list ((int) position));
             list.item_binded.connect ((item) => {
-                var entry = (MusicEntry) item.child;
+                var entry = get_list_item_widget (item) as MusicEntry;
                 var music = (Music) item.item;
-                entry.paintable = _loading_paintable;
-                entry.set_titles (music, sort_mode);
+                ((!)entry).paintable = _loading_paintable;
+                ((!)entry).set_titles (music, sort_mode);
             });
             bind_music_list_properties (list, is_playlist);
             return list;
@@ -343,10 +343,10 @@ namespace Gapless {
             var list = new MainMusicList (_app);
             list.item_activated.connect ((position, obj) => play_current_list ((int) position));
             list.item_binded.connect ((item) => {
-                var entry = (MusicEntry) item.child;
+                var entry = get_list_item_widget (item) as MusicEntry;
                 var music = (Music) item.item;
-                entry.paintable = _loading_paintable;
-                entry.set_titles (music, _sort_mode);
+                ((!)entry).paintable = _loading_paintable;
+                ((!)entry).set_titles (music, _sort_mode);
             });
             bind_music_list_properties (list, true);
             return list;
@@ -356,11 +356,11 @@ namespace Gapless {
             var list = new MusicList (_app, typeof (Playlist));
             list.item_activated.connect ((position, obj) => create_stack_page (null, obj as Playlist));
             list.item_binded.connect ((item) => {
-                var cell = (MusicWidget) item.child;
+                var cell = get_list_item_widget (item);
                 var playlist = (Playlist) item.item;
-                cell.music = playlist;
-                cell.paintable = _loading_paintable;
-                cell.title = playlist.title;
+                ((!)cell).music = playlist;
+                ((!)cell).paintable = _loading_paintable;
+                ((!)cell).title = playlist.title;
             });
             bind_music_list_properties (list);
             return list;

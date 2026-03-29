@@ -29,6 +29,8 @@ namespace Gapless {
         private uint _columns = 0;
         private Graphene.Size _cell_size = Graphene.Size ();
         private Graphene.Size _item_size = Graphene.Size ();
+        private uint _follow_current_handle = 0;
+        private uint _scroll_restore_handle = 0;
         private int _scrolling_item = -1;
 
         private static GenericArray<Music>? _dragged_musics = null;
@@ -114,6 +116,7 @@ namespace Gapless {
             set {
                 if (_dropping_item != value) {
                     _dropping_item = value;
+                    update_drag_preview ();
                     queue_draw ();
                 }
             }
@@ -289,18 +292,21 @@ namespace Gapless {
             var adj = _scroll_view.vadjustment;
             var list_height = _grid_view.get_height ();
             var scroll_done = false;
+            var needs_deferred_scroll = _grid_view.get_first_child () == null;
             _columns = get_grid_view_item_size (_grid_view, ref _item_size, ref _cell_size);
+            needs_deferred_scroll = needs_deferred_scroll || _columns == 0 || _cell_size.height <= 0;
             if (smoothly && _columns > 0 && _cell_size.height > 0 && adj.upper - adj.lower > list_height) {
                 var from = adj.value;
                 var row = index / _columns;
                 var max_to = double.max ((row + 1) * _cell_size.height - list_height, 0);
                 var min_to = double.max (row * _cell_size.height, 0);
                 var scroll_to =  from < max_to ? max_to : (from > min_to ? min_to : from);
-                if ((scroll_to - from).abs () < list_height) {
-                    //  Scroll smoothly
+                if ((scroll_to - from).abs () > 0.5) {
+                    var distance = (scroll_to - from).abs ();
+                    var duration = (uint) distance.clamp (180, 520);
                     var target = new Adw.CallbackAnimationTarget (adj.set_value);
                     _scroll_animation?.pause ();
-                    _scroll_animation = new Adw.TimedAnimation (_scroll_view, adj.value, scroll_to, 500, target);
+                    _scroll_animation = new Adw.TimedAnimation (_scroll_view, adj.value, scroll_to, duration, target);
                     _scroll_animation?.play ();
                     scroll_done = true;
                 }
@@ -308,8 +314,8 @@ namespace Gapless {
             if (!scroll_done) {
                 scroll_to_directly (index);
             }
-            // Hack: sometime show only first item if no child drawed, so scroll it when first draw an item
-            _scrolling_item = index;
+            // Hack: if the view has not allocated list items yet, retry once on first draw.
+            _scrolling_item = needs_deferred_scroll ? index : -1;
         }
 
         public void scroll_to_directly (uint index) {
@@ -364,6 +370,8 @@ namespace Gapless {
 
         public int set_to_current_item (bool scroll = true) {
             var item = find_item_in_model (_filter_model, _current_node);
+            if (_follow_current_handle != 0)
+                scroll = false;
             if (item != -1 && scroll && _dragged_musics == null)
                 scroll_to_item (item);
             return item;
@@ -374,7 +382,7 @@ namespace Gapless {
             if (item is Gtk.ListItem) {
                 item_unbinded (item);
                 item_binded (item);
-                var widget = item.child as MusicWidget;
+                var widget = get_list_item_widget (item);
                 if (widget != null)
                     ((!)widget).paintable = paintable;
             }
@@ -457,12 +465,14 @@ namespace Gapless {
             if (paintable != null) {
                 child.paintable = paintable;
             } else {
+                weak Gtk.ListItem? weak_item = item;
+                weak MusicWidget? weak_child = child;
                 child.first_draw_handler = child.cover.first_draw.connect (() => {
-                    child.disconnect_first_draw ();
+                    weak_child?.disconnect_first_draw ();
                     _thmbnailer.load_async.begin (music, _image_size, (obj, res) => {
                         var paintable2 = _thmbnailer.load_async.end (res);
-                        if (music == (Music) item.item) {
-                            child.paintable = paintable2;
+                        if (weak_item != null && weak_child != null && music == (Music) ((!)weak_item).item) {
+                            ((!)weak_child).paintable = paintable2;
                         }
                     });
                     if (_scrolling_item != -1) {
@@ -505,14 +515,24 @@ namespace Gapless {
                 _edge_scroll_handle = 0;
             }
             if (_editable) {
+                var preserved_scroll = _scroll_view.vadjustment.value;
                 uint position = uint.min (_dropping_item, visible_count);
                 if (value.holds (typeof (Playlist))) {
+                    var old_positions = capture_visible_positions ();
+                    var reorder_in_place = _dragged_source == this;
                     var dst_obj = _filter_model.get_item (position);
                     if (dst_obj == null || !_data_store.find ((!)dst_obj, out position))
                         position = _data_store.get_n_items ();
                     var playlist = (Playlist) value.get_object ();
+                    if (reorder_in_place) {
+                        suspend_current_follow ();
+                        _scrolling_item = -1;
+                    }
                     modified |= merge_items_to_store (_data_store, playlist.items, ref position);
-                    if (playlist.items.length > 0) {
+                    animate_reorder_from ((owned) old_positions);
+                    if (reorder_in_place)
+                        restore_scroll_value (preserved_scroll);
+                    if (!reorder_in_place && playlist.items.length > 0) {
                         var index = find_item_in_model (_filter_model, playlist.items.get (0));
                         if (index != -1) {
                             run_timeout_once (50, () => scroll_to_item (index, true));
@@ -539,8 +559,10 @@ namespace Gapless {
             }
             var height = get_height ();
             if (y < 50 || y > height - 50) {
-                var step = (y < 50) ? -20.0 : 20.0;
-                _edge_scroll_handle = GLib.Timeout.add (50, () => {
+                var edge = y < 50 ? y : height - y;
+                var speed = (50 - edge).clamp (8, 28);
+                var step = (y < 50) ? -speed : speed;
+                _edge_scroll_handle = GLib.Timeout.add (16, () => {
                     var adj = _scroll_view.vadjustment;
                     adj.value = double.max (adj.lower, double.min (adj.upper - adj.page_size, adj.value + step));
                     return true;
@@ -570,6 +592,35 @@ namespace Gapless {
             return item?.child as MusicWidget;
         }
 
+        private void suspend_current_follow (uint delay = 650) {
+            if (_follow_current_handle != 0)
+                Source.remove (_follow_current_handle);
+            _follow_current_handle = run_timeout_once (delay, () => _follow_current_handle = 0);
+        }
+
+        private HashTable<Music, double?> capture_visible_positions () {
+            return new HashTable<Music, double?> (direct_hash, direct_equal);
+        }
+
+        private void animate_reorder_from (owned HashTable<Music, double?> positions) {
+        }
+
+        private void clear_drag_preview (uint duration = 120) {
+        }
+
+        private void update_drag_preview () {
+        }
+
+        private void restore_scroll_value (double value) {
+            if (_scroll_restore_handle != 0)
+                Source.remove (_scroll_restore_handle);
+            _scroll_restore_handle = run_timeout_once (40, () => {
+                _scroll_restore_handle = 0;
+                var adj = _scroll_view.vadjustment;
+                adj.value = double.max (adj.lower, double.min (adj.upper - adj.page_size, value));
+            });
+        }
+
         private static void create_drag_source (Gtk.Widget widget, Gtk.ListItem item) {
             //  Hack: don't use `this` directly, because it will not be destroyed when detach???
             var point = Graphene.Point ();
@@ -581,6 +632,8 @@ namespace Gapless {
                     var playlist = ((!)list).create_playlist_for_selection ();
                     _dragged_musics = playlist.items;
                     _dragged_source = list;
+                    if (((!)list)._editable)
+                        ((!)list).suspend_current_follow (2000);
                     ((!)list).on_drag_begin (source, drag, widget, point);
                 }
             });
@@ -590,6 +643,7 @@ namespace Gapless {
                 return (list as MusicList)?.on_drag_prepare (item.item as Music);
             });
             source.drag_end.connect ((drag, delete_data) => {
+                _dragged_source?.clear_drag_preview ();
                 _dragged_musics = null;
                 _dragged_source = null;
             });
@@ -743,6 +797,10 @@ namespace Gapless {
             }
             return Result.OK;
         }
+    }
+
+    public MusicWidget? get_list_item_widget (Gtk.ListItem? item) {
+        return item?.child as MusicWidget;
     }
 
     public Gdk.ContentProvider create_content_provider (Playlist playlist) {

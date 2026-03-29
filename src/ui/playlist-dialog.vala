@@ -46,15 +46,15 @@ namespace Gapless {
             list.margin_bottom = 2;
             list.item_activated.connect ((position, obj) => close_with_result (obj as Playlist));
             list.item_created.connect ((item) => {
-                var cell = (MusicWidget) item.child;
-                cell.playing.icon_name = "document-open-recent-symbolic";
+                var cell = get_list_item_widget (item);
+                ((!)cell).playing.icon_name = "document-open-recent-symbolic";
             });
             list.item_binded.connect ((item) => {
-                var cell = (MusicWidget) item.child;
+                var cell = get_list_item_widget (item);
                 var playlist = (Playlist) item.item;
-                cell.music = playlist;
-                cell.paintable = loading_paintable;
-                cell.title = playlist.title;
+                ((!)cell).music = playlist;
+                ((!)cell).paintable = loading_paintable;
+                ((!)cell).title = playlist.title;
             });
             content.append (list);
             _list = list;
