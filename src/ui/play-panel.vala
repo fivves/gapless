@@ -64,9 +64,8 @@ namespace Gapless {
             make_widget_clickable (music_album).released.connect (() => {
                 var music = _app.current_music;
                 if (music != null) {
-                    var artist = new Artist ((!)music, ((!)music).artist_name);
                     var album = new Album ((!)music);
-                    var uri = build_library_uri (artist, album);
+                    var uri = build_library_uri (null, album);
                     win.open_page (uri);
                 }
             });
