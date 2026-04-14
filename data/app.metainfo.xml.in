@@ -65,6 +65,18 @@
     </screenshots>
 
     <releases>
+        <release version="4.8" date="2026-04-14">
+            <description translate="no">
+                <ul>
+                <li>Click artist, album, and song labels to navigate directly from the player and queue views.</li>
+                <li>Use Space as a play/pause hotkey without interrupting search entry typing.</li>
+                <li>Improve playlist drag-and-drop reordering behavior and related scrolling.</li>
+                <li>Split grid view preferences for artists and albums.</li>
+                <li>Normalize artist sorting for names like "The".</li>
+                <li>Update installer and build instructions for the Meson builddir workflow.</li>
+                </ul>
+            </description>
+        </release>
         <release version="4.7" date="2025-11-16">
             <description translate="no">
                 <ul>
