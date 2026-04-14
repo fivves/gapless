@@ -265,7 +265,8 @@ namespace Gapless {
             var controller = new Gtk.EventControllerKey ();
             controller.propagation_phase = Gtk.PropagationPhase.CAPTURE;
             controller.key_pressed.connect ((keyval, keycode, state) => {
-                if (keyval == Gdk.Key.space) {
+                var modifiers = state & Gtk.accelerator_get_default_mod_mask ();
+                if (keyval == Gdk.Key.space && modifiers == 0) {
                     var focus = get_focus ();
                     if (!(focus is Gtk.Editable)) {
                         ((Application) application).play_pause ();
@@ -274,7 +275,7 @@ namespace Gapless {
                 }
                 return false;
             });
-            this.add_controller (controller);
+            this.content.add_controller (controller);
         }
 
         private void button_command (SimpleAction action, Variant? parameter) {

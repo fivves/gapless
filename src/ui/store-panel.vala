@@ -342,6 +342,16 @@ namespace Gapless {
         private MainMusicList create_main_music_list () {
             var list = new MainMusicList (_app);
             list.item_activated.connect ((position, obj) => play_current_list ((int) position));
+            list.item_created.connect ((item) => {
+                var entry = get_list_item_widget (item) as MusicEntry;
+                if (entry != null) {
+                    ((!)entry).artist_navigation_enabled = true;
+                    ((!)entry).artist_activated.connect ((music) => {
+                        var artist = new Artist (music, music.artist_name);
+                        open_page (build_library_uri (artist, null));
+                    });
+                }
+            });
             list.item_binded.connect ((item) => {
                 var entry = get_list_item_widget (item) as MusicEntry;
                 var music = (Music) item.item;

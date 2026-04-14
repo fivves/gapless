@@ -122,6 +122,11 @@ namespace Gapless {
     }
 
     public class MusicEntry : MusicWidget {
+        private bool _artist_navigation_enabled = false;
+        private uint _sort_mode = SortMode.TITLE;
+
+        public signal void artist_activated (Music music);
+
         public MusicEntry (bool compact = true) {
             width_request = 324;
 
@@ -148,6 +153,7 @@ namespace Gapless {
             _title.halign = Gtk.Align.START;
             _title.ellipsize = EllipsizeMode.END;
             _title.add_css_class ("title-leading");
+            create_artist_click_controller (_title, true);
 
             _subtitle.halign = Gtk.Align.START;
             _subtitle.ellipsize = EllipsizeMode.END;
@@ -155,12 +161,26 @@ namespace Gapless {
             var font_size = _subtitle.get_pango_context ().get_font_description ().get_size () / Pango.SCALE;
             if (font_size >= 13)
                 _subtitle.add_css_class ("title-secondly");
+            create_artist_click_controller (_subtitle, false);
 
             append (_playing);
         }
 
+        public bool artist_navigation_enabled {
+            get {
+                return _artist_navigation_enabled;
+            }
+            set {
+                if (_artist_navigation_enabled != value) {
+                    _artist_navigation_enabled = value;
+                    update_artist_link_targets ();
+                }
+            }
+        }
+
         public void set_titles (Music music, uint sort) {
             this.music = music;
+            _sort_mode = sort;
             switch (sort) {
                 case SortMode.ALBUM:
                     _title.label = music.album;
@@ -187,6 +207,62 @@ namespace Gapless {
                     _title.label = music.title;
                     _subtitle.label = music.artist;
                     break;
+            }
+            update_artist_link_targets ();
+        }
+
+        private void create_artist_click_controller (Gtk.Widget widget, bool title) {
+            var controller = new Gtk.GestureClick ();
+            controller.button = Gdk.BUTTON_PRIMARY;
+            controller.pressed.connect ((n_press, x, y) => {
+                if (can_activate_artist_link (title))
+                    controller.set_state (Gtk.EventSequenceState.CLAIMED);
+            });
+            controller.released.connect ((n_press, x, y) => {
+                if (can_activate_artist_link (title) && music != null)
+                    artist_activated ((!)music);
+            });
+            widget.add_controller (controller);
+        }
+
+        private bool can_activate_artist_link (bool title) {
+            if (!_artist_navigation_enabled || music == null)
+                return false;
+            return title ? artist_link_in_title () : artist_link_in_subtitle ();
+        }
+
+        private bool artist_link_in_title () {
+            switch (_sort_mode) {
+                case SortMode.ARTIST:
+                case SortMode.ARTIST_ALBUM:
+                    return true;
+            }
+            return false;
+        }
+
+        private bool artist_link_in_subtitle () {
+            switch (_sort_mode) {
+                case SortMode.ALBUM:
+                case SortMode.ARTIST:
+                case SortMode.ARTIST_ALBUM:
+                case SortMode.RECENT:
+                    return false;
+            }
+            return _subtitle.label.length > 0;
+        }
+
+        private void update_artist_link_targets () {
+            set_artist_link_state (_title, can_activate_artist_link (true));
+            set_artist_link_state (_subtitle, can_activate_artist_link (false));
+        }
+
+        private void set_artist_link_state (Gtk.Widget widget, bool enabled) {
+            if (enabled) {
+                widget.tooltip_text = _("Go to artist");
+                widget.set_cursor_from_name ("pointer");
+            } else {
+                widget.set_tooltip_text (null);
+                widget.set_cursor_from_name (null);
             }
         }
     }
