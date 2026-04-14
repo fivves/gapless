@@ -81,6 +81,7 @@ namespace Gapless {
             foreach (var item in app_keys) {
                 app.set_accels_for_action (ACTION_APP + item.name, {item.key});
             }
+            app.set_accels_for_action (ACTION_APP + ACTION_PLAY_PAUSE, {"<primary>p", "space"});
 
             ActionShortKey[] win_keys = {
                 { ACTION_SAVE_LIST, "<primary>s" },

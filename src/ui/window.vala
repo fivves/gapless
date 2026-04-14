@@ -55,6 +55,7 @@ namespace Gapless {
 
             setup_drop_target ();
             setup_focus_controller ();
+            setup_key_controller ();
 
             var settings = app.settings;
             settings.bind ("leaflet-mode", _leaflet, "visible-mode", SettingsBindFlags.DEFAULT);
@@ -258,6 +259,22 @@ namespace Gapless {
             this.content.add_controller (controller);
             this.bind_property ("focus_visible", this, "focused_visible");
             this.bind_property ("focus_widget", this, "focused_widget");
+        }
+
+        private void setup_key_controller () {
+            var controller = new Gtk.EventControllerKey ();
+            controller.propagation_phase = Gtk.PropagationPhase.CAPTURE;
+            controller.key_pressed.connect ((keyval, keycode, state) => {
+                if (keyval == Gdk.Key.space) {
+                    var focus = get_focus ();
+                    if (!(focus is Gtk.Editable)) {
+                        ((Application) application).play_pause ();
+                        return true;
+                    }
+                }
+                return false;
+            });
+            this.add_controller (controller);
         }
 
         private void button_command (SimpleAction action, Variant? parameter) {
