@@ -3,7 +3,7 @@
 set -euo pipefail
 
 SOURCE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-BUILD_DIR="${SOURCE_DIR}/build"
+BUILD_DIR="${SOURCE_DIR}/builddir"
 
 if [[ $EUID -ne 0 ]]; then
     echo "This script must be run as root (use sudo)"
@@ -12,7 +12,7 @@ fi
 
 if [[ ! -f "${BUILD_DIR}/build.ninja" ]]; then
     echo "Build directory not found at ${BUILD_DIR}"
-    echo "Run 'meson setup build --buildtype=release' and 'meson compile -C build' first."
+    echo "Run 'meson setup builddir --buildtype=release' and 'meson compile -C builddir' first."
     exit 1
 fi
 
